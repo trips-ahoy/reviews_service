@@ -1,0 +1,36 @@
+{
+  "name": "reviews_service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/reviews_service/client/index.js",
+  "scripts": {
+    "start": "nodemon server",
+    "build": "webpack -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripadvisorgroup1/reviews_service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tripadvisorgroup1/reviews_service/issues"
+  },
+  "homepage": "https://github.com/tripadvisorgroup1/reviews_service#readme",
+  "dependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "babel-loader": "^8.2.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
