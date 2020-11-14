@@ -6,10 +6,10 @@ const faker = require('faker');
 var randomUsers = () => {
   var arr = new Array(Math.floor(Math.random() * 15));
 
-  for (var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     arr[i] = Math.floor(Math.random() * 99 + 1);
   }
-  return arr.join(' ').toString();
+  return arr.join(' ')
 }
 
 
@@ -18,7 +18,7 @@ var createUsers = () => {
   var users = [];
   return new Promise((resolve, reject) => {
 
-    for ( let i = 1; i < 101; i++) {
+    for (let i = 1; i < 101; i++) {
       var name = faker.name.firstName() + ' ' + faker.name.lastName()
       const user = {
         id: i,
@@ -43,7 +43,7 @@ var createUsers = () => {
 var addUsers= (users) => {
 
     return new Promise((resolve, reject) => {
-      for (var i = 0; i < users.length-1; i++) {
+      for (let i = 0; i < users.length - 1; i++) {
 
         var queryArg = [users[i].id, users[i].name, users[i].username, users[i].address, users[i].contributions, users[i].votes, users[i].avatar, users[i].followers];
 
@@ -70,7 +70,7 @@ var createReviews = (users) => {
     var travel_type = ['families', 'couples', 'solo', 'business', 'friends'];
     var languages = ['Russian', 'English', 'German', 'Chinese', 'French', 'Spanish', 'Italian', 'Polish', 'Swedish', 'Arabic', 'Japanese','Hindi', 'Bengali', 'Indonesian', 'Turkish'];
 
-    for ( let i = 0; i < users.length; i++) {
+    for (let i = 0; i < users.length; i++) {
 
       const review = {
         user_id:  Math.floor(Math.random() * 99 + 1),
@@ -94,7 +94,7 @@ var createReviews = (users) => {
 var addReviews= (reviews) => {
   return new Promise((resolve, reject) => {
 
-    for (var i = 0; i < reviews.length; i++) {
+    for (let i = 0; i < reviews.length; i++) {
 
       var queryArg = [reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo , reviews[i].helpful]
 
@@ -113,15 +113,12 @@ var addReviews= (reviews) => {
 
 createUsers()
   .then ((users) => {
-    // console.log('users in first then', users)
     return addUsers(users)
   })
   .then( (users) => {
-    // console.log('users in second then', users)
     return createReviews(users)
   })
   .then ( (reviews) => {
-    // console.log('reviews in then', reviews)
     addReviews(reviews)
   })
   .then(() => {
