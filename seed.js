@@ -91,7 +91,7 @@ var createReviews = (users) => {
 }
 
 
-var addReviews= (reviews) => {
+var addReviews = (reviews) => {
   return new Promise((resolve, reject) => {
 
     for (let i = 0; i < reviews.length; i++) {
