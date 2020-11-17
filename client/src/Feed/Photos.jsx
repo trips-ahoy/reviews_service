@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Filters extends React.Component {
+class Photos extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,4 +14,4 @@ class Filters extends React.Component {
   }
 }
 
-export default Filters;
+export default Photos;

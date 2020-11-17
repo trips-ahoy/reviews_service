@@ -3,18 +3,18 @@ import { shallow } from 'enzyme';
 import PageIndex from '../client/src/PageIndex';
 
 describe('PageIndex Module Tests', () => {
-   it('renders previous page on click event', () => {
-      //code here
-    });
+   it('click event for page change', () => {
+      const wrapper = shallow(<PageIndex />);
+      expect(wrapper).toHaveProp('changePage');
 
-    it('renders next page on click event', () => {
-      //code here
-    });
+      const component = shallow(<button onClick={changePage} />);
 
-    it('renders proper page on number click event', () => {
-      //code here
-    });
+      component
+      .find('button#page-button')
+      .simulate('click');
 
+      expect(changePage).toHaveBeenCalled();
+    });
 
 
 });

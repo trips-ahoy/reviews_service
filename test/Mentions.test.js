@@ -1,14 +1,25 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Mentions from '../client/src/Mentions';
+import Word from '../client/src/Word'
 
 describe('Mentions Module Tests', () => {
-   it('features word if used more than 5 times', () => {
-      //code here
+   it('should pass in mentions array', () => {
+      const wrapper = shallow(<Mentions />);
+      expect(wrapper).toHaveProp('mentions');
     });
 
-    it('filters reviews based on click event', () => {
-      //code here
+    it('should handle click event', () => {
+      const wrapper = shallow(<Mentions />);
+      expect(wrapper).toHaveProp('filterMention');
+
+      const component = shallow(<Word onClick={filterMention} />);
+
+      component
+      .find('button#mention-button')
+      .simulate('click');
+
+      expect(filterMention).toHaveBeenCalled();
     });
 
 });

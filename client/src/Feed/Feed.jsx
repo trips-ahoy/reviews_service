@@ -1,7 +1,8 @@
 import React from 'react';
-import Word from './Word.jsx';
+import Review from './Review.jsx';
 
-class Mentions extends React.Component {
+
+class Feed extends React.Component {
 
   constructor(props) {
     super(props);
@@ -10,10 +11,10 @@ class Mentions extends React.Component {
   render() {
     return (
       <div>
-
+        <Review />
       </div>
     );
   }
 }
 
-export default Mentions;
+export default Feed;

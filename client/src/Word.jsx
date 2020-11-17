@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Feed extends React.Component {
+class Word extends React.Component {
 
   constructor(props) {
     super(props);
@@ -14,4 +14,4 @@ class Feed extends React.Component {
   }
 }
 
-export default Feed;
+export default Word;
