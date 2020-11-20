@@ -11,15 +11,15 @@ describe('Mentions Module Tests', () => {
 
     it('should handle click event', () => {
       const wrapper = shallow(<Mentions />);
-      expect(wrapper).toHaveProp('filterMention');
+      expect(wrapper).toHaveProp('filterMentions');
 
       const component = shallow(<Word onClick={filterMention} />);
 
       component
-      .find('button#mention-button')
+      .find('button')
       .simulate('click');
 
-      expect(filterMention).toHaveBeenCalled();
+      expect(filterMentions).toHaveBeenCalled();
     });
 
 });

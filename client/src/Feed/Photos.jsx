@@ -6,9 +6,16 @@ class Photos extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.log('phto3', this.props.photo3)
+  }
+
   render() {
     return (
-      <div>
+      <div className = 'photos'>
+        <img className= 'reviewPhoto' src={this.props.photo1} ></img>
+        <img className= 'reviewPhoto' src={this.props.photo2} ></img>
+        <img className= 'reviewPhoto' src={this.props.photo3} ></img>
       </div>
     );
   }

@@ -1,0 +1,431 @@
+body {
+  background-color: #f2f2f2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.head28 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  line-height: normal;
+  font-weight: bold;
+}
+
+.head18 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.primary {
+  font-family: 'Poppins', sans-serif;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 18px;
+  border: 1px solid #f2f2f2 ;
+  margin: 2px;
+}
+
+.mentionsPrim {
+  font-family: 'Poppins', sans-serif;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 8px;
+}
+
+.mentionsSec {
+  font-family: 'Poppins', sans-serif;
+  background-color:white;
+  color: #474747;
+  border: none;
+  cursor: pointer;
+  padding: 8px 10px;
+  font-family: ;
+  font-size: 12px;
+  line-height: 18px;
+  border: 1px solid #474747;
+  margin: 8px;
+}
+
+
+
+/* writereview drop down */
+.dropbtn {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+}
+
+.dropdown-content {
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.container {
+  width: 50%; /* Full width */
+  background-color: #ddd; /* Grey background */
+}
+
+.percent {
+  height: 100%;
+  background-color: black;
+}
+
+
+.container-mentions {
+  display: flex;
+  justify-content: left;
+}
+
+.container-search {
+  background-color: white;
+  display: flex;
+  justify-content: left;
+  padding: 12px 20px 12px 15px;
+
+}
+
+input
+{
+  border:none;
+  padding: 0px 0px 0px 10px;
+}
+
+
+/* new */
+
+.app {
+  display: block;
+  width: 900px;
+  height: auto;
+  margin: 4em 0em 0 0;
+}
+
+.tabs {
+  background-color: #FFF;
+  width: calc(100% + 4em);
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.tab {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 10em;
+}
+
+.tab > div {
+  /* margin: 0 0 1em 0; */
+}
+
+.reviewTab {
+  border-top: #000 4px solid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  background-color: #FFF;
+}
+
+.secondaryTab {
+  border-bottom: rgb(189, 189, 189) 1px solid;
+  border-left: rgb(189, 189, 189) 1px solid;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  background-color: #FFF;
+}
+
+.reviewFilter {
+  /* display: flex; */
+  display: block;
+  /* flex-direction: column; */
+  width: 100%;
+  height: auto;
+  padding: 2em;
+  background-color: #FFF;
+}
+
+/* .reviewFilter > * {
+  background: #F66;
+} */
+
+.writeReviewContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 2em 0;
+  padding: 0 0 1em 0;
+  border-bottom: rgb(189, 189, 189) 1px solid;
+}
+
+.filtersContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* .filtersContainer > div {
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .filtersContainer > div > div {
+  margin: 0 1em 0 0;
+  background: yellow;
+} */
+
+.ratingsContainer {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+}
+
+.rating {
+  display: flex;
+  width: 20em;
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin: 0 0 1em 1em; */
+}
+
+
+div.container {
+  height: 12px;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0 0 1em 0;
+}
+
+.ratingText{
+  width: 6em;
+}
+
+.travelContainer {
+  flex-grow: 1;
+}
+
+.seasonContainer {
+  flex-grow: 1;
+}
+
+.languageContainer {
+  flex-grow: 1;
+}
+
+.container-search {
+  margin: 1em 0 2em 0;
+  border: 1px #000 solid;
+  width: 100%;
+}
+
+/* .container-search > input:focus {
+  outline-width: 0;
+} */
+
+.container-mentions button {
+  border-radius: 8px;
+}
+
+.sqrbtn {
+  padding: 0;
+  border: none;
+  background: none;
+  margin-right: 3px;
+  margin-top: 3px;
+  font-size: 16px;
+}
+
+.user-photo {
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+}
+
+.user-info {
+  color: #8c8c8c;
+  display: flex;
+  flex-direction: row;
+}
+
+.reviewPhoto {
+  height: 33.333%;
+  width: 33.333%;
+}
+
+.circles {
+  color: green;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.single-review {
+  background-color: #FFF;
+  width: calc(100% + 4em);
+  height: 100%;
+  margin-bottom: 1em;
+}
+
+.userbar {
+  padding: 2em;
+  display: flex;
+  place-content: space-between;
+  flex-direction: row;
+}
+
+.userMeta {
+  display: flex;
+  place-content: space-between;
+  flex-direction: column;
+  margin-left: 1em
+}
+
+.userContainer {
+  display: flex;
+  place-content: space-between;
+  flex-direction: row;
+}
+
+.infoContainer {
+  height: auto;
+  width: 100%;
+  padding: 2em;
+}
+
+.infoContainer > * {
+  margin-bottom: 4px;
+}
+
+.review-title {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.reviewFooter {
+  display: flex;
+  flex-direction: row;
+}
+
+.reviewFooter > div {
+  display: flex;
+  flex-direction: row;
+  margin: 0 2em 0 0;
+}
+
+.review-icon {
+  margin: 0 .5em 0 0;
+}
+
+.date, .helpfulVotes {
+  margin: 0 0 2em 0;
+}
+
+.pageIndexContainer {
+  background-color: #FFF;
+  width: calc(100% + 4em);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userNameText {
+  font-weight: 600;
+}
+
+.user-name {
+  display: flex;
+  flex-direction: row;
+}
+
+.wroteReview {
+  margin: 0 0 0 .5em;
+}
+
+.heavy {
+  font-weight: 600;
+  margin: 0 .25em 0 .25em;
+}
+.userContainer > i {
+  margin: 0 .50em 0 0;
+}
+
+.review-icon {
+  color:#bababa;
+
+}
+
+.helpfulVotes {
+  color:#bababa;
+}
+
+.date {
+  display: flex;
+  flex-direction: row;
+}
+
+.date-text {
+  margin: 0 .25em 0 .25em;
+}
+
+.date-heading {
+  font-weight: 600;
+  margin: 0 .25em 0 0;
+}
+
+.ellipse {
+  font-size: 20px;
+}

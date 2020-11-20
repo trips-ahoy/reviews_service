@@ -7,10 +7,10 @@ describe('Search Module Tests', () => {
       const component = shallow(<Search />);
 
       component
-      .find('button#search-button')
+      .find('button')
       .simulate('click');
 
-      expect(filterSearch).toHaveBeenCalled();
+      expect(searchFilter).toHaveBeenCalled();
     });
 
 });

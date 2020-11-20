@@ -1,31 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Review from '../client/src/Review';
+import Review from '../client/src/Feed/Review';
 
 describe('UserBar Module Tests', () => {
-  it('accepts userObj with accurate keys', () => {
+  it('passes through user information', () => {
     const component = shallow(<Userbar />);
-    expect(component).toHaveProp('username');
+    expect(component).toHaveProp('user');
   });
 });
 
 
 describe('Information Module Tests', () => {
-  it('accepts reviewObj with accurate keys', () => {
+  it('passes through review information', () => {
     const component = shallow(<Info />);
-    expect(component).toHaveProp('rating');
+    expect(component).toHaveProp('info');
    });
 
-  // it('responds to click event for share button', () => {
-  //   const component = shallow(<Info />);
 
-  //   expect(component).toHaveProp('userPopup');
-
-  //   component
-  //   .find('button#user-button')
-  //   .simulate('click');
-
-  //   expect(userPopup).toHaveBeenCalled();
-  // });
 
 });

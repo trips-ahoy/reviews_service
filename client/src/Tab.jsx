@@ -6,9 +6,14 @@ class Tab extends React.Component {
     super(props);
   }
 
+
+
   render() {
     return (
-      <div>
+      <div className='reviewTab tab'>
+        <div className = 'head28'><i class="far fa-edit" ></i></div>
+        <div className = 'head18'> {this.props.reviewCount} </div>
+        <div className = 'tabTitle'>Reviews</div>
       </div>
     );
   }
