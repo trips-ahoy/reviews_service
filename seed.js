@@ -27,7 +27,7 @@ var createUsers = () => {
         address: faker.address.city() + ", " + faker.address.country(),
         contributions: Math.floor(Math.random() * 500),
         votes: Math.floor(Math.random() * 500),
-        avatar: faker.internet.avatar(),
+        avatar: '/images/avatar'+ Math.floor(Math.random() * 5 + 1 )+'.jpg',
         followers: Math.floor(Math.random() * 2000)
       }
       users.push(user);
@@ -83,7 +83,9 @@ var createReviews = (users) => {
         travel_type: travel_type[Math.floor(Math.random() * 5)],
         language: languages[Math.floor(Math.random() * 15)],
         rating: Math.floor(Math.random() * 6),
-        photo: '../public/photo1.jpeg',
+        photo1: '/images/nature'+ Math.floor(Math.random() * 3 + 1)+'.jpg',
+        photo2: '/images/nature'+ Math.floor(Math.random() * 3 + 3)+'.jpg',
+        photo3: '/images/nature'+ Math.floor(Math.random() * 3 + 7)+'.jpg',
         helpful: randomUsers()
       }
       reviews.push(review)
@@ -99,9 +101,9 @@ var addReviews = (reviews) => {
 
     for (let i = 0; i < reviews.length; i++) {
 
-      var queryArg = [reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].season, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo , reviews[i].helpful]
+      var queryArg = [reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].season, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo1 , reviews[i].photo2 ,reviews[i].photo3 ,reviews[i].helpful]
 
-      var query = "INSERT INTO reviews (user_id, title, full_text, date, season, travel_type, language, rating, photo, helpful) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      var query = "INSERT INTO reviews (user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       db.query(query, queryArg, (err) => {
         if (err) {

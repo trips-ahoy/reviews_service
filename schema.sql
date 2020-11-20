@@ -25,7 +25,9 @@ season VARCHAR(20),
 travel_type VARCHAR(20),
 language VARCHAR(20),
 rating INT,
-photo VARCHAR(50),
+photo1 VARCHAR(50),
+photo2 VARCHAR(50),
+photo3 VARCHAR(50),
 helpful VARCHAR(50),
 FOREIGN KEY (user_id) REFERENCES users(id)
 );

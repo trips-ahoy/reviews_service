@@ -10,7 +10,7 @@ describe('PageIndex Module Tests', () => {
       const component = shallow(<button onClick={changePage} />);
 
       component
-      .find('button#page-button')
+      .find('button')
       .simulate('click');
 
       expect(changePage).toHaveBeenCalled();

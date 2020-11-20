@@ -121,7 +121,7 @@ body {
   background-color: white;
   display: flex;
   justify-content: left;
-  padding: 12px 40px 12px 15px;
+  padding: 12px 20px 12px 15px;
 
 }
 
@@ -291,6 +291,11 @@ div.container {
   border-radius: 50%;
 }
 
+.user-info {
+  color: #8c8c8c;
+  display: flex;
+  flex-direction: row;
+}
 
 .reviewPhoto {
   height: 33.333%;
@@ -367,4 +372,60 @@ button:focus {
 
 .date, .helpfulVotes {
   margin: 0 0 2em 0;
+}
+
+.pageIndexContainer {
+  background-color: #FFF;
+  width: calc(100% + 4em);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.userNameText {
+  font-weight: 600;
+}
+
+.user-name {
+  display: flex;
+  flex-direction: row;
+}
+
+.wroteReview {
+  margin: 0 0 0 .5em;
+}
+
+.heavy {
+  font-weight: 600;
+  margin: 0 .25em 0 .25em;
+}
+.userContainer > i {
+  margin: 0 .50em 0 0;
+}
+
+.review-icon {
+  color:#bababa;
+
+}
+
+.helpfulVotes {
+  color:#bababa;
+}
+
+.date {
+  display: flex;
+  flex-direction: row;
+}
+
+.date-text {
+  margin: 0 .25em 0 .25em;
+}
+
+.date-heading {
+  font-weight: 600;
+  margin: 0 .25em 0 0;
+}
+
+.ellipse {
+  font-size: 20px;
 }

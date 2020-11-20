@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/Filters/TravelType.jsx</title>
+    <title>Code coverage report for src/Filters/RatingButton.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/Filters</a> TravelType.jsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/Filters</a> RatingButton.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -112,7 +112,13 @@
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,23 +134,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,7 +181,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
-class TravelType extends React.Component {
+class RatingButton extends React.Component {
 &nbsp;
 <span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
 <span class="cstat-no" title="statement not covered" >    super(props);</span>
@@ -179,7 +191,11 @@ class TravelType extends React.Component {
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    this.handleClick = this.handleClick.bind(this);</span>
+&nbsp;
+&nbsp;
   }
+&nbsp;
+&nbsp;
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ha</span>ndleClick(event) {
 &nbsp;
@@ -196,7 +212,7 @@ class TravelType extends React.Component {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    setToggle()</span>
       .then (<span class="fstat-no" title="function not covered" >(t</span>oggle) =&gt; {
-<span class="cstat-no" title="statement not covered" >        this.props.handleChange(this.props.travel, this.state.isToggleOn, "travel");</span>
+<span class="cstat-no" title="statement not covered" >        this.props.handleChange(this.props.rating, this.state.isToggleOn, "ratings");</span>
       })
       .catch( <span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
 <span class="cstat-no" title="statement not covered" >        console.log(err)</span>
@@ -205,24 +221,26 @@ class TravelType extends React.Component {
 &nbsp;
   }
 &nbsp;
+&nbsp;
+&nbsp;
 <span class="fstat-no" title="function not covered" >  re</span>nder() {
 <span class="cstat-no" title="statement not covered" >    return (</span>
+&nbsp;
       &lt;div&gt;
-      {
-        !this.state.isToggleOn &amp;&amp;
-        &lt;button className= 'sqrbtn' travel = {this.props.travel} onClick = {this.handleClick} &gt;&lt;i class="far fa-square"&gt;&lt;/i&gt;&lt;/button&gt;
-      }
-      {
-        this.state.isToggleOn &amp;&amp;
-        &lt;button className= 'sqrbtn' travel = {this.props.travel} onClick = {this.handleClick} &gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/button&gt;
-      }
-      {this.props.travel}
+        {
+          !this.state.isToggleOn &amp;&amp;
+          &lt;button className= 'sqrbtn' rating = {this.props.rating} onClick = {this.handleClick} &gt;&lt;i class="far fa-square"&gt;&lt;/i&gt;&lt;/button&gt;
+        }
+        {
+          this.state.isToggleOn &amp;&amp;
+          &lt;button className= 'sqrbtn' rating = {this.props.rating} onClick = {this.handleClick} &gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/button&gt;
+        }
       &lt;/div&gt;
     );
   }
 }
 &nbsp;
-export default TravelType;</pre></td></tr></table></pre>
+export default RatingButton;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

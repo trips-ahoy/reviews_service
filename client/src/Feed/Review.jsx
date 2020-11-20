@@ -50,7 +50,7 @@ class Review extends React.Component {
           this.state.loaded &&
           <div className = 'single-review'>
           <Userbar user={this.state.user} date={this.state.date}/>
-          <Photos />
+          <Photos photo1 = {this.state.review.photo1} photo2 = {this.state.review.photo2} photo3 = {this.state.review.photo3}/>
           <Info info = {this.state.review}/>
           </div>
         }

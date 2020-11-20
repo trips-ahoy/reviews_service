@@ -86,10 +86,11 @@ class Info extends React.Component {
 
         <div className = "review-title">{this.state.info.title}</div>
         <div className = "review-text">{this.state.info.full_text}</div>
+        < br/>
 
         <div className = "date">
-          <div className = "date-heading">Date of experience:</div>
-          <div className = "date-text">{this.state.info.date}</div>
+          <div className = "date-heading">Date of experience: </div>
+          <div className = "date-text"> {this.state.info.date}</div>
         </div>
 
         <div className = "helpfulVotes">{this.state.info.helpful.length} Helpful votes</div>
