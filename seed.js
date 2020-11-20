@@ -69,6 +69,8 @@ var createReviews = (users) => {
 
     var travel_type = ['families', 'couples', 'solo', 'business', 'friends'];
     var languages = ['Russian', 'English', 'German', 'Chinese', 'French', 'Spanish', 'Italian', 'Polish', 'Swedish', 'Arabic', 'Japanese','Hindi', 'Bengali', 'Indonesian', 'Turkish'];
+    var seasons = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb']
+
 
     for (let i = 0; i < users.length; i++) {
 
@@ -76,7 +78,8 @@ var createReviews = (users) => {
         user_id:  Math.floor(Math.random() * 99 + 1),
         title: faker.lorem.sentence(),
         full_text: faker.lorem.sentences(),
-        date: faker.date.recent().toString(),
+        date: faker.date.month() + ' 20' + Math.floor(Math.random() * 10 + 10),
+        season: seasons[Math.floor(Math.random() * 4)],
         travel_type: travel_type[Math.floor(Math.random() * 5)],
         language: languages[Math.floor(Math.random() * 15)],
         rating: Math.floor(Math.random() * 6),
@@ -96,9 +99,9 @@ var addReviews = (reviews) => {
 
     for (let i = 0; i < reviews.length; i++) {
 
-      var queryArg = [reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo , reviews[i].helpful]
+      var queryArg = [reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].season, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo , reviews[i].helpful]
 
-      var query = "INSERT INTO reviews (user_id, title, full_text, date, travel_type, language, rating, photo, helpful) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      var query = "INSERT INTO reviews (user_id, title, full_text, date, season, travel_type, language, rating, photo, helpful) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       db.query(query, queryArg, (err) => {
         if (err) {

@@ -8,7 +8,10 @@ class Photos extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = 'photos'>
+        <img className= 'reviewPhoto' src="photo1.jpeg" ></img>
+        <img className= 'reviewPhoto' src="photo1.jpeg" ></img>
+        <img className= 'reviewPhoto' src="photo1.jpeg" ></img>
       </div>
     );
   }

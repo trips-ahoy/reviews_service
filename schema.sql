@@ -21,6 +21,7 @@ user_id INT,
 title VARCHAR(100),
 full_text VARCHAR(500),
 date VARCHAR(70),
+season VARCHAR(20),
 travel_type VARCHAR(20),
 language VARCHAR(20),
 rating INT,
@@ -32,3 +33,4 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 
 
+-- mysql -u student < schema.sql -p

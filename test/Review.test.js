@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Review from '../client/src/Review';
+import Review from '../client/src/Feed/Review';
 
 describe('UserBar Module Tests', () => {
   it('accepts userObj with accurate keys', () => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Filters from '../client/src/Filters';
+import Filters from '../client/src//Filters/Filters';
 import Rating from '../client/src/Filters/Rating';
 import TravelType from '../client/src/Filters/TravelType';
 import Season from '../client/src/Filters/Season';
-import Lang from '../client/src/Filters/Lang';
+import Language from '../client/src/Filters/Language';
 
 describe('Filters Module Tests', () => {
 
@@ -54,8 +54,8 @@ describe('Filters Module Tests', () => {
 
     it('should pass in languages, filterLang, and handle click event', () => {
       const wrapper = shallow(<Filters />);
-      expect(wrapper.find(Lang)).toHaveProp('languages');
-      expect(wrapper.find(Lang)).toHaveProp('filterLang');
+      expect(wrapper.find(Language)).toHaveProp('languages');
+      expect(wrapper.find(Language)).toHaveProp('filterLang');
 
       const component = shallow(<Language />);
 
