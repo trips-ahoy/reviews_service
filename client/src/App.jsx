@@ -43,6 +43,8 @@ class App extends React.Component {
   componentDidMount() {
     this.fetchReviews();
     this.filterParams();
+
+    console.log('window.location.pathname', window.location.pathname)
   }
 
   fetchReviews() {

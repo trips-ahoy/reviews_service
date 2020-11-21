@@ -11,6 +11,14 @@ app.use(express.static('public'));
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
+
+
+// app.get('/reviews', function (req, res) {
+
+//   res.send('Hello World!')
+
+// })
+
 app.get('/reviews', function (req, res) {
 
 	const sql = `SELECT * FROM reviews`;

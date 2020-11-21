@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Review from '../client/src/Feed/Review';
+import Userbar from '../client/src/Feed/Userbar';
+import Info from '../client/src/Feed/Info';
 
 describe('UserBar Module Tests', () => {
   it('passes through user information', () => {
@@ -15,7 +17,5 @@ describe('Information Module Tests', () => {
     const component = shallow(<Info />);
     expect(component).toHaveProp('info');
    });
-
-
 
 });
