@@ -68,7 +68,7 @@ var createReviews = (users) => {
   return new Promise((resolve, reject) => {
 
     var travel_type = ['families', 'couples', 'solo', 'business', 'friends'];
-    var languages = ['Russian', 'English', 'German', 'Chinese', 'French', 'Spanish', 'Italian', 'Polish', 'Swedish', 'Arabic', 'Japanese','Hindi', 'Bengali', 'Indonesian', 'Turkish'];
+    var languages = [ 'Chinese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'];
     var seasons = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb']
 
 
@@ -81,7 +81,7 @@ var createReviews = (users) => {
         date: faker.date.month() + ' 20' + Math.floor(Math.random() * 10 + 10),
         season: seasons[Math.floor(Math.random() * 4)],
         travel_type: travel_type[Math.floor(Math.random() * 5)],
-        language: languages[Math.floor(Math.random() * 15)],
+        language: languages[Math.floor(Math.random() * 8)],
         rating: Math.floor(Math.random() * 6),
         photo1: '/images/nature'+ Math.floor(Math.random() * 3 + 1)+'.jpg',
         photo2: '/images/nature'+ Math.floor(Math.random() * 3 + 3)+'.jpg',
