@@ -1,12 +1,11 @@
 //import in mysql
 const mysql = require('mysql');
-const password = require('./database.config.js')
 
 //set up connection parameters
 const connection = mysql.createConnection({
  hostname: 'localhost',
  user: 'student1',
- password: password,
+ password: 'student1',
  database: 'reviewsMod'
 });
 
