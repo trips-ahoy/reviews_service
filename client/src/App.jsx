@@ -25,7 +25,7 @@ class App extends React.Component {
       languages: {},
       summary: [],
       loaded: false,
-      mentions: ['fumaroles','ascent', 'steaming', 'path', 'meters', 'snow' ]
+      mentions: ['fumaroles','ascent', 'steaming', 'path', 'meters', 'snow' ],
 
     }
 
@@ -44,12 +44,13 @@ class App extends React.Component {
     this.fetchReviews();
     this.filterParams();
 
-    console.log('window.location.pathname', window.location.pathname)
   }
 
   fetchReviews() {
-    axios.get('/reviews')
+
+    axios.get(`/api/listings${window.location.pathname}reviews`)
       .then(({data}) => {
+        console.log('data,', data)
         this.setState({
           reviews: data
         })
@@ -68,7 +69,7 @@ class App extends React.Component {
 
 //create filter objects
   filterParams() {
-    axios.get('/reviews')
+    axios.get(`/api/listings/2/reviews`)
     .then(({data}) => {
       var ratings = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0};
       for (let i = 0; i < data.length; i++) {

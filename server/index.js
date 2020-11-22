@@ -7,23 +7,18 @@ const db = require('../database');
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use(express.static('public'));
+app.use('/:listing_id', express.static('public'));
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
 
+app.get('/api/listings/:listing_id/reviews', function (req, res) {
 
-// app.get('/reviews', function (req, res) {
+  const id = req.params.listing_id;
 
-//   res.send('Hello World!')
+	const sql = `SELECT * FROM reviews WHERE listing_id = ?`;
 
-// })
-
-app.get('/reviews', function (req, res) {
-
-	const sql = `SELECT * FROM reviews`;
-
-  db.query(sql, (err, data) => {
+  db.query(sql, id, (err, data) => {
     if (err) {
       console.log('Error fetching reviews', err);
       res.send(500);
@@ -34,9 +29,10 @@ app.get('/reviews', function (req, res) {
 
 })
 
-app.get('/user/:id', function (req, res) {
+app.get('/api/listings/:listing_id/reviews/user/:id', function (req, res) {
 
-	var id = [req.params.id];
+  var id = [req.params.id];
+  console.log('look here',id)
 
 	const sql = `SELECT * FROM users WHERE id = ?`;
 

@@ -15,8 +15,14 @@ avatar VARCHAR(100),
 followers INT
 );
 
+CREATE TABLE listings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  listing VARCHAR(100)
+);
+
 CREATE TABLE reviews (
 id INT AUTO_INCREMENT PRIMARY KEY,
+listing_id INT,
 user_id INT,
 title VARCHAR(100),
 full_text VARCHAR(500),
@@ -29,10 +35,12 @@ photo1 VARCHAR(50),
 photo2 VARCHAR(50),
 photo3 VARCHAR(50),
 helpful VARCHAR(50),
-FOREIGN KEY (user_id) REFERENCES users(id)
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (listing_id) REFERENCES listings(id)
 );
 
 
 
 
--- mysql -u student < schema.sql -p
+
+-- mysql -u student1 < schema.sql -p
