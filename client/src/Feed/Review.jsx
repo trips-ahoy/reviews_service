@@ -27,8 +27,8 @@ class Review extends React.Component {
 
 
   fetchCurrentUser () {
-    var id = this.props.userId;
-    axios.get(`/user/${id}`)
+
+    axios.get(`/api/listings${window.location.pathname}reviews/user/${this.props.userId}`)
       .then(({data}) => {
         console.log(data)
         this.setState ({

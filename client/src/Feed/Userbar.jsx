@@ -12,15 +12,12 @@ class Userbar extends React.Component {
 
   }
 
-  componentDidMount() {
-    console.log('this.state', this.state.user)
-  }
 
   render() {
     return (
       <div className = 'userbar'>
         <div className ='userContainer'>
-        <img className= 'user-photo' src={this.state.user.avatar}></img>
+        <img className= 'user-photo' src={window.location.pathname + this.state.user.avatar}></img>
         <div className= 'userMeta'>
           <div className = 'user-name'>
             <div className = 'userNameText'>{this.state.user.name}</div>

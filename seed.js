@@ -13,6 +13,45 @@ var randomUsers = () => {
 }
 
 
+var createListings = () => {
+  var listings = [];
+
+  return new Promise((resolve, reject) => {
+
+    for (let i = 1; i < 102; i++) {
+      const listing = {
+        listing: faker.lorem.sentence()
+      }
+      listings.push(listing);
+    }
+    resolve(listings)
+  })
+
+}
+
+var addListings= (listings) => {
+
+
+  return new Promise((resolve, reject) => {
+    for (let i = 1; i < listings.length; i++) {
+
+      var queryArg = [listings[i].listing];
+
+      var query = "INSERT INTO listings (listing) VALUES (?)";
+
+      db.query(query, queryArg, (err) => {
+        if (err) {
+          reject(err)
+        }
+      })
+    }
+    resolve(listings)
+  })
+
+}
+
+
+
 
 var createUsers = () => {
   var users = [];
@@ -62,7 +101,7 @@ var addUsers= (users) => {
 
 
 
-var createReviews = (users) => {
+var createReviews = (listings) => {
 
   var reviews = [];
   return new Promise((resolve, reject) => {
@@ -72,23 +111,29 @@ var createReviews = (users) => {
     var seasons = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb']
 
 
-    for (let i = 0; i < users.length; i++) {
-
-      const review = {
-        user_id:  Math.floor(Math.random() * 99 + 1),
-        title: faker.lorem.sentence(),
-        full_text: faker.lorem.sentences(),
-        date: faker.date.month() + ' 20' + Math.floor(Math.random() * 10 + 10),
-        season: seasons[Math.floor(Math.random() * 4)],
-        travel_type: travel_type[Math.floor(Math.random() * 5)],
-        language: languages[Math.floor(Math.random() * 8)],
-        rating: Math.floor(Math.random() * 6),
-        photo1: '/images/nature'+ Math.floor(Math.random() * 3 + 1)+'.jpg',
-        photo2: '/images/nature'+ Math.floor(Math.random() * 3 + 3)+'.jpg',
-        photo3: '/images/nature'+ Math.floor(Math.random() * 3 + 7)+'.jpg',
-        helpful: randomUsers()
-      }
+    for (let i = 1; i < listings.length; i++) {
+      //50 reviews per listing
+      for (let j = 0; j < 50; j++) {
+        const review = {
+          listing_id: i,
+          user_id:  Math.floor(Math.random() * 99 + 1),
+          title: faker.lorem.sentence(),
+          full_text: faker.lorem.sentences(),
+          date: faker.date.month() + ' 20' + Math.floor(Math.random() * 10 + 10),
+          season: seasons[Math.floor(Math.random() * 4)],
+          travel_type: travel_type[Math.floor(Math.random() * 5)],
+          language: languages[Math.floor(Math.random() * 8)],
+          rating: Math.floor(Math.random() * 6),
+          photo1: '/images/nature'+ Math.floor(Math.random() * 3 + 1)+'.jpg',
+          photo2: '/images/nature'+ Math.floor(Math.random() * 3 + 3)+'.jpg',
+          photo3: '/images/nature'+ Math.floor(Math.random() * 3 + 7)+'.jpg',
+          helpful: randomUsers()
+        }
       reviews.push(review)
+
+      }
+
+
     }
 
     resolve(reviews);
@@ -101,9 +146,9 @@ var addReviews = (reviews) => {
 
     for (let i = 0; i < reviews.length; i++) {
 
-      var queryArg = [reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].season, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo1 , reviews[i].photo2 ,reviews[i].photo3 ,reviews[i].helpful]
+      var queryArg = [reviews[i].listing_id, reviews[i].user_id, reviews[i].title, reviews[i].full_text, reviews[i].date, reviews[i].season, reviews[i].travel_type, reviews[i].language, reviews[i].rating, reviews[i].photo1 , reviews[i].photo2 ,reviews[i].photo3 ,reviews[i].helpful]
 
-      var query = "INSERT INTO reviews (user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      var query = "INSERT INTO reviews (listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful) VALUES ('?', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       db.query(query, queryArg, (err) => {
         if (err) {
@@ -111,19 +156,33 @@ var addReviews = (reviews) => {
         }
       })
 
+
+
+
     }
     resolve()
   })
 }
 
+
+
+
 createUsers()
   .then ((users) => {
     return addUsers(users)
   })
-  .then( (users) => {
-    return createReviews(users)
+
+
+createListings()
+  .then((listings) => {
+    return addListings(listings)
+  })
+  .then( (listings) => {
+    ///console.log('users added', users)
+    return createReviews(listings)
   })
   .then ( (reviews) => {
+    ///console.log( reviews,'users reviews')
     addReviews(reviews)
   })
   .then(() => {

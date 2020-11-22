@@ -3,3 +3,6 @@ node_modules
 ##keyFiles
 
 *.pem
+
+#database password
+database/database.config.js
