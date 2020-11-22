@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const db = require('../database');
 
+//
+
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use('/:listing_id', express.static('public'));
