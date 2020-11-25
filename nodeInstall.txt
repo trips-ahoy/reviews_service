@@ -12,3 +12,7 @@ node -e "console.log('Running Node.js ' + process.version)"
 
 ##Change Vesion
 nvm install 14
+
+##removing port
+lsof -i tcp:3003
+kill -9 ####

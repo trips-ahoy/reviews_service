@@ -9,7 +9,7 @@ const db = require('../database');
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use('/:listings_id', express.static(__dirname + '/../client/dist'));
+app.use('/:listing_id', express.static('public'));
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
