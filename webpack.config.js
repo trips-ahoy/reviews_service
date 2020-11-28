@@ -2,6 +2,7 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: './client/index.js',
   output: {
     filename: 'bundle.js',
