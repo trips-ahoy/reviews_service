@@ -17,7 +17,6 @@ class App extends React.Component {
 
     this.state = {
       reviews: [],
-      renderedReviews: [],
       reviewCount: 0,
       ratings: {},
       travelTypes: {},
@@ -26,6 +25,11 @@ class App extends React.Component {
       summary: [],
       loaded: false,
       mentions: ['fumaroles','ascent', 'steaming', 'path', 'meters', 'snow' ],
+      seasonFilter: ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'],
+      languageFilter: [ 'Chinese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'],
+      travelFilter: ['families', 'couples', 'solo', 'business', 'friends'],
+      ratingFilter: [1 ,2 ,3, 4, 5],
+      currentReviews: []
 
     }
 
@@ -34,23 +38,73 @@ class App extends React.Component {
     this.searchFilter = this.searchFilter.bind(this)
     this.filterWords = this.filterWords.bind(this)
 
-    this.filterLang = this.filterLang.bind(this)
-    this.filterSeason = this.filterSeason.bind(this)
-    this.filterTravel = this.filterTravel.bind(this)
-    this.filterRating = this.filterRating.bind(this)
+    this.fetchInitialReviews = this.fetchInitialReviews.bind(this)
+
+    this.handleChange = this.handleChange.bind(this);
+
   }
 
   componentDidMount() {
     this.fetchReviews();
     this.filterParams();
-
   }
 
-  fetchReviews() {
+  handleChange(filterElement, toggle, filterType) {
 
-    axios.get(`/api/listings${window.location.pathname}reviews`)
+    if (filterType === "seasonFilter") {
+      if (this.state.seasonFilter.length !== 4) {
+        var filter = []
+      } else {
+        var filter = [...this.state.seasonFilter]
+      }
+
+    } else if (filterType === "ratingFilter") {
+      if (this.state.ratingFilter !== 5) {
+        var filter = []
+      } else {
+        var filter = [...this.state.ratingFilter]
+      }
+
+    } else if (filterType === "travelFilter") {
+      if (this.state.travelFilter !== 5) {
+        var filter = []
+      } else {
+        var filter = [...this.state.travelFilter]
+      }
+
+    } else if (filterType === "languageFilter") {
+      if (this.state.languageFilter !== 8) {
+        var filter = []
+      } else {
+        var filter = [...this.state.languageFilter]
+      }
+
+    } else {
+      console.log('Error with filterType input:', filterType)
+    }
+
+    if (toggle) {
+      filter.push(filterElement);
+    } else {
+      var index = filter.indexOf(filterElement)
+      filter.splice(index, 1)
+    }
+
+    let obj = {}
+    obj[filterType] = filter
+    this.setState(obj);
+    this.fetchReviews()
+  }
+
+
+  fetchReviews() {
+    var lang = this.state.languageFilter.join(" ")
+    var rating = this.state.ratingFilter.join(" ")
+    var travel = this.state.travelFilter.join(" ")
+    var season = this.state.seasonFilter.join(" ")
+
+    axios.get(`/api/listings${window.location.pathname}reviews/${lang}/${travel}/${rating}/${season}`)
       .then(({data}) => {
-        console.log('data,', data)
         this.setState({
           reviews: data
         })
@@ -64,12 +118,19 @@ class App extends React.Component {
         this.setState ({
           reviewCount: count
         })
+        return data
+      })
+      .then(() => {
+        this.fetchInitialReviews()
       })
   }
 
-//create filter objects
+
+
+
+//overall counts
   filterParams() {
-    axios.get(`/api/listings/2/reviews`)
+    axios.get(`/api/listings${window.location.pathname}reviews`)
     .then(({data}) => {
       var ratings = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0};
       for (let i = 0; i < data.length; i++) {
@@ -82,7 +143,6 @@ class App extends React.Component {
       this.setState ({
         ratings: ratings
       })
-      console.log('inside filterParams', this.state.ratings)
       return data;
     })
     .then((data) => {
@@ -97,7 +157,6 @@ class App extends React.Component {
       this.setState ({
         travelTypes: travelTypes
       })
-      console.log('travel types', this.state.travelTypes)
       return data;
     })
     .then((data) => {
@@ -146,55 +205,29 @@ class App extends React.Component {
   searchFilter(searchWord) {
     console.log('i am search filter in app', searchWord)
   }
-
-  filterWords(words) {
-    console.log('i am filter mentions in app', words)
+  filterWords(searchWord) {
+    console.log('i am search filter in app', searchWord)
   }
 
-  filterRating(ratings) {
-    console.log('i am filter rating in app', rating)
-  }
-
-  filterTravel(types) {
-    console.log('i am filter travel in app', types)
-  }
-
-  filterSeason(seasons) {
-    var reviews = [...this.state.reviews]
-    var filtered = [];
-    for (var i = 0; i < reviews.length; i++) {
-      for (var j = 0; j < seasons.length; j++) {
-        if (reviews[i].season === seasons[j]) {
-          filtered.push(reviews[i])
-        }
-      }
-    }
-    //
-
+  filter(language, travel, rating, season) {
+    let obj = {}
+    obj[filterType] = filter
+    this.setState(obj)
     this.setState({
-      renderedReviews: filtered
+
     })
-
-    console.log('i am filter season in app', seasons)
+    fetchReviews()
   }
 
-  filterLang(languages) {
-    // var reviews = [...this.state.reviews]
-    // var filtered = [];
-    // for (var i = 0; i < reviews.length; i++) {
-    //   for (var j = 0; j < languages.length; j++) {
-    //     if (reviews[i].language === languages[j]) {
-    //       filtered.push(reviews[i])
-    //     }
-    //   }
-    // }
 
-    // this.setState({
-    //   renderedReviews: filtered
-    // })
-
-    // console.log('i am filter language in app', languages)
+  fetchInitialReviews() {
+    var copyReviews = [...this.state.reviews]
+    var firstPage = copyReviews.slice(0, 6)
+    this.setState ({
+      currentReviews: firstPage
+    })
   }
+
 
   render() {
     return (
@@ -213,11 +246,11 @@ class App extends React.Component {
         </div>
         <div className = 'reviewFilter'>
         <WriteReview />
-        <Filters summary = {this.state.summary} filterLang = {this.filterLang} filterTravel = {this.filterTravel} filterSeason = {this.filterSeason} filterRating = {this.filterRating}/>
+        <Filters summary = {this.state.summary} handleChange = {this.handleChange}/>
         <Mentions mentions = {this.state.mentions} filterWords = {this.filterWords}/>
         </div>
         <Search searchFilter = {this.searchFilter}/>
-        <Feed reviews = {this.state.reviews}/>
+        <Feed currentReviews = {this.state.currentReviews}/>
         <PageIndex />
         </div>
         }

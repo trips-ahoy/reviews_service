@@ -30,7 +30,7 @@ class Season extends React.Component {
 
     setToggle()
       .then ((toggle) => {
-        this.props.handleChange(this.props.season, this.state.isToggleOn, "seasons");
+        this.props.handleChange(this.props.season, this.state.isToggleOn, "seasonFilter");
       })
       .catch( (err) => {
         console.log(err)

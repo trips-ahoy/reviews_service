@@ -29,8 +29,6 @@ class Language extends React.Component {
       event.preventDefault();
     }
 
-
-
     var setToggle = () => {
         return new Promise ((resolve, reject) => {
           this.setState(state => ({
@@ -42,7 +40,7 @@ class Language extends React.Component {
 
     setToggle()
       .then ((toggle) => {
-        this.props.handleChange(this.props.season, this.state.isToggleOn, "seasons");
+        this.props.handleChange(this.props.language, this.state.isToggleOn, "languageFilter");
       })
       .catch( (err) => {
         console.log(err)

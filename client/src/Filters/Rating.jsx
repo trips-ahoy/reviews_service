@@ -19,9 +19,7 @@ class Rating extends React.Component {
   }
 
   componentDidMount() {
-    console.log('summary in ratings', this.props.summary)
     this.createGraphs();
-
   }
 
 
@@ -50,7 +48,7 @@ class Rating extends React.Component {
         <div className= 'bold'>Travel Rating</div>
 
           <div className= 'rating'>
-          <RatingButton rating = {this.props.summary[0][4]} handleChange = {this.props.handleChange}/>
+          <RatingButton rating = {this.props.summary[0][4]} handleChange = {this.props.handleChange} ratingType = {4}/>
           <div className='ratingText'> Excellent</div>
 
             <div class="container">
@@ -61,7 +59,7 @@ class Rating extends React.Component {
           </div>
 
           <div className= 'rating'>
-          <RatingButton rating = {this.props.summary[0][3]} handleChange = {this.props.handleChange}/>
+          <RatingButton rating = {this.props.summary[0][3]} handleChange = {this.props.handleChange} ratingType = {3}/>
 
           <div className='ratingText'> Very Good </div>
 
@@ -73,7 +71,7 @@ class Rating extends React.Component {
           </div>
 
           <div className= 'rating'>
-          <RatingButton rating = {this.props.summary[0][2]} handleChange = {this.props.handleChange}/>
+          <RatingButton rating = {this.props.summary[0][2]} handleChange = {this.props.handleChange} ratingType = {2}/>
 
           <div className='ratingText'> Average </div>
             <div class="container">
@@ -84,7 +82,7 @@ class Rating extends React.Component {
           </div>
 
           <div className= 'rating'>
-          <RatingButton rating = {this.props.summary[0][1]} handleChange = {this.props.handleChange}/>
+          <RatingButton rating = {this.props.summary[0][1]} handleChange = {this.props.handleChange} ratingType = {1}/>
 
           <div className='ratingText'> Poor </div>
             <div class="container">
@@ -95,7 +93,7 @@ class Rating extends React.Component {
           </div>
 
           <div className= 'rating'>
-          <RatingButton rating = {this.props.summary[0][0]} handleChange = {this.props.handleChange}/>
+          <RatingButton rating = {this.props.summary[0][0]} handleChange = {this.props.handleChange} ratingType = {0}/>
 
            <div className='ratingText'> Terrible </div>
 

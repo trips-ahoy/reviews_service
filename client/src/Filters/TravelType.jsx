@@ -27,7 +27,7 @@ class TravelType extends React.Component {
 
     setToggle()
       .then ((toggle) => {
-        this.props.handleChange(this.props.travel, this.state.isToggleOn, "travel");
+        this.props.handleChange(this.props.travel, this.state.isToggleOn, "travelFilter");
       })
       .catch( (err) => {
         console.log(err)
