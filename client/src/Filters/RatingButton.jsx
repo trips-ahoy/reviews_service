@@ -48,11 +48,11 @@ class RatingButton extends React.Component {
       <div>
         {
           !this.state.isToggleOn &&
-          <button className= 'sqrbtn' rating = {this.props.rating} onClick = {this.handleClick} ><i class="far fa-square"></i></button>
+          <button className= 'sqrbtn' aria-label='button-rating' rating = {this.props.rating} onClick = {this.handleClick} ><i class="far fa-square"></i></button>
         }
         {
           this.state.isToggleOn &&
-          <button className= 'sqrbtn' rating = {this.props.rating} onClick = {this.handleClick} ><i class="fas fa-check-square"></i></button>
+          <button className= 'sqrbtn' aria-label='button-rating' rating = {this.props.rating} onClick = {this.handleClick} ><i class="fas fa-check-square"></i></button>
         }
       </div>
     );

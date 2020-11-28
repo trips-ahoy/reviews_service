@@ -17,7 +17,7 @@ class Userbar extends React.Component {
     return (
       <div className = 'userbar'>
         <div className ='userContainer'>
-        <img className= 'user-photo' src={window.location.pathname + this.state.user.avatar}></img>
+        <img className= 'user-photo' alt = "user photo" src={window.location.pathname + this.state.user.avatar}></img>
         <div className= 'userMeta'>
           <div className = 'user-name'>
             <div className = 'userNameText'>{this.state.user.name}</div>

@@ -41,11 +41,11 @@ class TravelType extends React.Component {
       <div>
       {
         !this.state.isToggleOn &&
-        <button className= 'sqrbtn' travel = {this.props.travel} onClick = {this.handleClick} ><i class="far fa-square"></i></button>
+        <button className= 'sqrbtn' aria-label='button-travel' travel = {this.props.travel} onClick = {this.handleClick} ><i class="far fa-square"></i></button>
       }
       {
         this.state.isToggleOn &&
-        <button className= 'sqrbtn' travel = {this.props.travel} onClick = {this.handleClick} ><i class="fas fa-check-square"></i></button>
+        <button className= 'sqrbtn' aria-label='button-travel' travel = {this.props.travel} onClick = {this.handleClick} ><i class="fas fa-check-square"></i></button>
       }
       {this.props.travel}
       </div>

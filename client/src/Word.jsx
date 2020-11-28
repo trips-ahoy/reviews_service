@@ -26,11 +26,11 @@ class Word extends React.Component {
       <div>
         {
           !this.state.isToggleOn &&
-          <button className = 'mentionsSec' onClick = {this.handleClick}>{this.props.word}</button>
+          <button className = 'mentionsSec' aria-label='button-word' onClick = {this.handleClick}>{this.props.word}</button>
         }
         {
           this.state.isToggleOn &&
-          <button className = 'mentionsPrim' onClick = {this.handleClick}>{this.props.word}</button>
+          <button className = 'mentionsPrim' aria-label='button-word' onClick = {this.handleClick}>{this.props.word}</button>
         }
 
       </div>

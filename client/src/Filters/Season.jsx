@@ -44,11 +44,11 @@ class Season extends React.Component {
       <div>
       {
         !this.state.isToggleOn &&
-        <button className= 'sqrbtn' season = {this.props.season} onClick = {this.handleClick} ><i class="far fa-square"></i></button>
+        <button className= 'sqrbtn' aria-label='button-season' season = {this.props.season} onClick = {this.handleClick} ><i class="far fa-square"></i></button>
       }
       {
         this.state.isToggleOn &&
-        <button className= 'sqrbtn' season = {this.props.season} onClick = {this.handleClick} ><i class="fas fa-check-square"></i></button>
+        <button className= 'sqrbtn' aria-label='button-season' season = {this.props.season} onClick = {this.handleClick} ><i class="fas fa-check-square"></i></button>
       }
       {this.props.season}
       </div>
