@@ -4,14 +4,23 @@ const port = 3003;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const db = require('../database');
-var shrinkRay = require('shrink-ray');
-//
+
+app.get('*.js', (req, res, next) => {
+  if (req.header('Accept-Encoding').includes('br')) {
+    req.url = req.url + '.br';
+    console.log(req.header('Accept-Encoding'));
+    res.set('Content-Encoding', 'br');
+    res.set('Content-Type', 'application/javascript; charset=UTF-8');
+  }
+  next();
+});
+
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use('/:listing_id', express.static('public'));
 
-app.use(shrinkRay());
+
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
