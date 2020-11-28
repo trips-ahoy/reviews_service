@@ -26,12 +26,6 @@ module.exports = {
           'css-loader'
         ]
       }
-    ],
-    plugins: [
-      new BrotliPlugin({
-        asset: '[file].br',
-        test: /\.(js)$/
-      })
     ]
   }
 };
