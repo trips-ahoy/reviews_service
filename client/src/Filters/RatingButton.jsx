@@ -31,7 +31,7 @@ class RatingButton extends React.Component {
 
     setToggle()
       .then ((toggle) => {
-        this.props.handleChange(this.props.rating, this.state.isToggleOn, "ratings");
+        this.props.handleChange(this.props.ratingType, this.state.isToggleOn, "ratingFilter");
       })
       .catch( (err) => {
         console.log(err)
