@@ -54,11 +54,11 @@ class Language extends React.Component {
       <div>
       {
         !this.state.isToggleOn &&
-        <button className= 'sqrbtn' season = {this.props.language} onClick = {this.handleClick} ><i class="far fa-circle"></i></button>
+        <button className= 'sqrbtn' aria-label='button-language' language = {this.props.language} onClick = {this.handleClick} ><i class="far fa-circle"></i></button>
       }
       {
         this.state.isToggleOn &&
-        <button className= 'sqrbtn' season = {this.props.language} onClick = {this.handleClick} ><i class="fas fa-dot-circle"></i></button>
+        <button className= 'sqrbtn' aria-label='button-language' language = {this.props.language} onClick = {this.handleClick} ><i class="fas fa-dot-circle"></i></button>
       }
       {this.props.language}
       </div>

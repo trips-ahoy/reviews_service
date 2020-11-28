@@ -16,3 +16,5 @@ nvm install 14
 ##removing port
 lsof -i tcp:3003
 kill -9 ####
+
+sudo vim

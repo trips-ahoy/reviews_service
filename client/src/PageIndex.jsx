@@ -9,8 +9,8 @@ class PageIndex extends React.Component {
   render() {
     return (
       <div className='pageIndexContainer'>
-        <button className = 'mentionsSec' onClick = {this.handleClick}>Previous</button>
-        <button className = 'mentionsPrim' onClick = {this.handleClick}>Next</button>
+        <button className = 'mentionsSec' aria-label='button-index' onClick = {this.handleClick}>Previous</button>
+        <button className = 'mentionsPrim' aria-label='button-index' onClick = {this.handleClick}>Next</button>
 
       </div>
     );

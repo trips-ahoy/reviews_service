@@ -9,9 +9,9 @@ class Photos extends React.Component {
   render() {
     return (
       <div className = 'photos'>
-        <img className= 'reviewPhoto' src= {window.location.pathname + this.props.photo1}></img>
-        <img className= 'reviewPhoto' src= {window.location.pathname + this.props.photo2} ></img>
-        <img className= 'reviewPhoto' src={window.location.pathname+this.props.photo3} ></img>
+        <img className= 'reviewPhoto' alt = "first travel photo" src= {window.location.pathname + this.props.photo1}></img>
+        <img className= 'reviewPhoto' alt = "second travel photo" src= {window.location.pathname + this.props.photo2} ></img>
+        <img className= 'reviewPhoto' alt = "third travel photo" src={window.location.pathname+this.props.photo3} ></img>
       </div>
     );
   }

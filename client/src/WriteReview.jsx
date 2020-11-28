@@ -28,12 +28,12 @@ class WriteReview extends React.Component {
           <button className = 'primary'>Write a review</button>
           <div class="dropdown">
             {!this.state.isToggleOn &&
-              <button className = 'dropbtn' onClick = {this.handleClick}><i class="fas fa-caret-down"></i></button>
+              <button className = 'dropbtn' aria-label='write-review' onClick = {this.handleClick}><i class="fas fa-caret-down"></i></button>
             }
             {
               this.state.isToggleOn &&
               <div>
-                <button className = 'dropbtn' onClick = {this.handleClick}><i class="fas fa-caret-up"></i></button>
+                <button className = 'dropbtn' aria-label='write-review' onClick = {this.handleClick}><i class="fas fa-caret-up"></i></button>
                 <div id="myDropdown" class="dropdown-content">
                   <a href="#home"><i class="far fa-edit"></i> Write a review</a>
                   <a href="#about"><i class="fas fa-camera"></i> Post a photo</a>

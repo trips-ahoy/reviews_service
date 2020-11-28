@@ -44,10 +44,10 @@ class Mentions extends React.Component {
         <div className='bold'>Popular mentions</div>
         <div className = 'container-mentions'>
         {(this.state.filters.length === 0) &&
-        <button className = 'mentionsPrim'>All reviews</button>
+        <button className = 'mentionsPrim' aria-label='button-mentions' >All reviews</button>
         }
         {(this.state.filters.length !== 0) &&
-        <button className = 'mentionsSec'>All reviews</button>
+        <button className = 'mentionsSec' aria-label='button-mentions'>All reviews</button>
         }
         {this.state.mentions.map ((word, index) => (
           <Word word={word} key={word+'.'+index} filterMentions = {this.filterMentions}/>
