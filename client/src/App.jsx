@@ -231,6 +231,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <div className = 'main'>
       <div className='app'> {
         this.state.loaded &&
         <div>
@@ -255,6 +256,7 @@ class App extends React.Component {
         </div>
         }
 
+      </div>
       </div>
     );
   }
