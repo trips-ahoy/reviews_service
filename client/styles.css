@@ -1,5 +1,12 @@
 
-
+.app {
+  background-color: #f2f2f2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  justify-content: center;
+}
 
 .head28 {
   font-family: 'Poppins', sans-serif;
