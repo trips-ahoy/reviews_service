@@ -1,18 +1,14 @@
 const express = require('express');
-const shrinkRay = require('shrink-ray-current');
 const app = express();
 const port = 3003;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const db = require('../database');
-
-app.use(shrinkRay());
-
-
+var compression = require('compression')
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-
+app.use(compression())
 
 app.use('/:listing_id', express.static('public'));
 
