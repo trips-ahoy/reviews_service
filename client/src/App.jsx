@@ -42,7 +42,7 @@ class App extends React.Component {
     this.fetchReviews = this.fetchReviews.bind(this)
     this.filterParams = this.filterParams.bind(this)
 
-    //empty functions
+    //empty functions for stretch goal
     this.searchFilter = this.searchFilter.bind(this)
     this.filterWords = this.filterWords.bind(this)
 
@@ -60,7 +60,7 @@ class App extends React.Component {
 
 
   handleClick(pageMovement) {
-
+    var allReviews = [...this.state.reviews]
     var totalPages = Math.floor(this.props.reviews/5) + 1
 
     if (pageMovement === 'next') {
@@ -69,9 +69,11 @@ class App extends React.Component {
       var start = this.state.start + 5
       var end = this.state.end + 5
       this.setState ({
-        currentPage : currentPage
+        currentPage : currentPage,
+        start: start,
+        end: end
       })
-      this.updateReviews()
+      this.updateReviews(start, end)
     }
 
     if (pageMovement === 'previous') {
@@ -80,24 +82,27 @@ class App extends React.Component {
         var start = this.state.start - 5
         var end = this.state.end - 5
         var currentPage = this.state.currentPage - 1
+        var currentReviews = allReviews.slice(start, end)
+
         this.setState ({
-          currentPage : currentPage
+          currentPage : currentPage,
+          start: start,
+          end: end
         })
-        this.updateReviews()
+        this.updateReviews(start, end)
       }
 
     }
 
   }
 
-  updateReviews() {
+  updateReviews(start, end) {
     var allReviews = [...this.state.reviews]
     if (this.state.currentPage === this.state.totalPage) {
-      var currentReviews = allReviews.slice(this.state.start)
+      var currentReviews = allReviews.slice(start)
     } else {
-      var currentReviews = allReviews.slice(this.state.start, this.state.end)
+      var currentReviews = allReviews.slice(start, end)
     }
-
     this.setState ({
       currentReviews: currentReviews
     })
