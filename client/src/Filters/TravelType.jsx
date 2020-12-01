@@ -1,4 +1,6 @@
 import React from 'react';
+const Promise = require('bluebird');
+
 
 class TravelType extends React.Component {
 
@@ -25,12 +27,14 @@ class TravelType extends React.Component {
        })
     }
 
+
+
     setToggle()
       .then ((toggle) => {
         this.props.handleChange(this.props.travel, this.state.isToggleOn, "travelFilter");
       })
       .catch( (err) => {
-        console.log(err)
+        console.log('hello', err)
       })
 
 

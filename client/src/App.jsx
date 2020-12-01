@@ -26,21 +26,30 @@ class App extends React.Component {
       loaded: false,
       mentions: ['fumaroles','ascent', 'steaming', 'path', 'meters', 'snow' ],
       seasonFilter: ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'],
-      languageFilter: [ 'Chinese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'],
+      languageFilter: ['English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'],
       travelFilter: ['families', 'couples', 'solo', 'business', 'friends'],
       ratingFilter: [1 ,2 ,3, 4, 5],
-      currentReviews: []
-
+      currentReviews: [],
+      counter: {language:0, season:0, rating:0, travel:0},
+      currentPage: 1,
+      start: 0,
+      end: 5,
     }
+
+    this.updateReviews = this.updateReviews.bind(this)
+    this.handleClick = this.handleClick.bind(this)
 
     this.fetchReviews = this.fetchReviews.bind(this)
     this.filterParams = this.filterParams.bind(this)
+
+    //empty functions
     this.searchFilter = this.searchFilter.bind(this)
     this.filterWords = this.filterWords.bind(this)
 
     this.fetchInitialReviews = this.fetchInitialReviews.bind(this)
 
     this.handleChange = this.handleChange.bind(this);
+
 
   }
 
@@ -49,35 +58,96 @@ class App extends React.Component {
     this.filterParams();
   }
 
+
+  handleClick(pageMovement) {
+
+    var totalPages = Math.floor(this.props.reviews/5) + 1
+
+    if (pageMovement === 'next') {
+      if (this.state.currentPage !== totalPages)
+      var currentPage = this.state.currentPage + 1
+      var start = this.state.start + 5
+      var end = this.state.end + 5
+      this.setState ({
+        currentPage : currentPage
+      })
+      this.updateReviews()
+    }
+
+    if (pageMovement === 'previous') {
+
+      if (this.state.currentPage !== 1) {
+        var start = this.state.start - 5
+        var end = this.state.end - 5
+        var currentPage = this.state.currentPage - 1
+        this.setState ({
+          currentPage : currentPage
+        })
+        this.updateReviews()
+      }
+
+    }
+
+  }
+
+  updateReviews() {
+    var allReviews = [...this.state.reviews]
+    if (this.state.currentPage === this.state.totalPage) {
+      var currentReviews = allReviews.slice(this.state.start)
+    } else {
+      var currentReviews = allReviews.slice(this.state.start, this.state.end)
+    }
+
+    this.setState ({
+      currentReviews: currentReviews
+    })
+  }
+
   handleChange(filterElement, toggle, filterType) {
 
     if (filterType === "seasonFilter") {
-      if (this.state.seasonFilter.length !== 4) {
+      if (this.state.counter.season === 0) {
         var filter = []
       } else {
         var filter = [...this.state.seasonFilter]
       }
+      var counter = this.state.counter
+      counter.season = counter.season + 1
 
     } else if (filterType === "ratingFilter") {
-      if (this.state.ratingFilter !== 5) {
+      if (this.state.counter.rating === 0) {
         var filter = []
       } else {
         var filter = [...this.state.ratingFilter]
       }
+      var counter = this.state.counter
+      counter.rating = counter.rating + 1
 
     } else if (filterType === "travelFilter") {
-      if (this.state.travelFilter !== 5) {
+      if (this.state.counter.travel === 0) {
         var filter = []
+
       } else {
         var filter = [...this.state.travelFilter]
       }
+      var counter = this.state.counter
+
+      counter.travel = counter.travel + 1
 
     } else if (filterType === "languageFilter") {
-      if (this.state.languageFilter !== 8) {
+      if (filterElement === 'All languages') {
+        var filter = ['English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese']
+        this.setState ({
+          deselectLang: true
+        })
+
+      } else if (this.state.counter.language === 0) {
         var filter = []
       } else {
         var filter = [...this.state.languageFilter]
       }
+      var counter = this.state.counter
+      counter.language = counter.language + 1
 
     } else {
       console.log('Error with filterType input:', filterType)
@@ -90,9 +160,16 @@ class App extends React.Component {
       filter.splice(index, 1)
     }
 
-    let obj = {}
-    obj[filterType] = filter
-    this.setState(obj);
+
+    //set filters
+    let filterObj = {}
+    filterObj[filterType] = filter
+    this.setState(filterObj);
+    //set counter
+    let countObj = {}
+    countObj[counter] = countObj
+    this.setState(countObj);
+
     this.fetchReviews()
   }
 
@@ -174,7 +251,7 @@ class App extends React.Component {
       return data;
     })
     .then((data) => {
-      var languages = {'Russian':0, 'English':0, 'German':0, 'Chinese':0, 'French':0, 'Spanish':0, 'Italian':0, 'Polish':0, 'Swedish':0, 'Arabic':0, 'Japanese':0,'Hindi':0, 'Bengali':0, 'Indonesian':0, 'Turkish':0};
+      var languages = {'Chinese':0, 'English':0, 'German':0, 'French':0, 'Spanish':0, 'Italian':0, 'Arabic':0, 'Japanese':0};
       for (let i = 0; i < data.length; i++) {
         for (var key in languages) {
           if (data[i].language === key) {
@@ -189,7 +266,6 @@ class App extends React.Component {
     .then(() => {
       var summary = [];
       summary.push(this.state.ratings, this.state.languages, this.state.travelTypes, this.state.seasons)
-      console.log('summary', summary)
       this.setState ({
         summary: summary
       })
@@ -209,24 +285,16 @@ class App extends React.Component {
     console.log('i am search filter in app', searchWord)
   }
 
-  filter(language, travel, rating, season) {
-    let obj = {}
-    obj[filterType] = filter
-    this.setState(obj)
-    this.setState({
-
-    })
-    fetchReviews()
-  }
-
 
   fetchInitialReviews() {
     var copyReviews = [...this.state.reviews]
-    var firstPage = copyReviews.slice(0, 6)
+    var portion = copyReviews.slice(0, 6)
     this.setState ({
-      currentReviews: firstPage
+      currentReviews: portion
     })
   }
+
+
 
 
   render() {
@@ -247,12 +315,12 @@ class App extends React.Component {
         </div>
         <div className = 'reviewFilter'>
         <WriteReview />
-        <Filters summary = {this.state.summary} handleChange = {this.handleChange}/>
+        <Filters summary = {this.state.summary} handleChange = {this.handleChange} deselectLang = {this.state.deselectlang}/>
         <Mentions mentions = {this.state.mentions} filterWords = {this.filterWords}/>
         </div>
         <Search searchFilter = {this.searchFilter}/>
         <Feed currentReviews = {this.state.currentReviews}/>
-        <PageIndex />
+        <PageIndex handleClick = {this.handleClick}/>
         </div>
         }
 
