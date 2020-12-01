@@ -11,25 +11,23 @@ class Filters extends React.Component {
 
     this.state = {
       seasons: ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'],
-
       languages:  [],
-
       travel: ['families', 'couples', 'solo', 'business', 'friends'],
-
-      ratings: [0, 1, 2, 3, 4, 5],
+      ratings: [0, 1, 2, 3, 4, 5]
 
     }
     this.createLangList = this.createLangList.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount () {
     this.createLangList()
   }
 
+
   createLangList () {
     var langlist = ['All languages']
     var languageObj = this.props.summary[1]
+    console.log('this is languages', this.props.summary[1])
     for (var key in languageObj) {
       langlist.push(key)
     }
@@ -38,37 +36,8 @@ class Filters extends React.Component {
       languages: langlist
     })
   }
-  // //filterType = [seasonFilter, ratingFilter, travelFilter, languageFilter]
-  // handleChange(filterElement, toggle, filterType) {
-  //   console.log('handlechange triggered:', filterElement, toggle, filterType)
 
-  //   if (filterType === "seasonFilter") {
-  //     var filter = [...this.state.seasonFilter]
-  //   } else if (filterType === "ratingFilter") {
-  //     var filter = [...this.state.ratingFilter]
-  //   } else if (filterType === "travelFilter") {
-  //     var filter = [...this.state.travelFilter]
-  //   } else if (filterType === "languageFilter") {
-  //     var filter = [...this.state.languageFilter]
-  //   } else {
-  //     console.log('Error with filterType input:', filterType)
-  //   }
 
-  //   if (toggle) {
-  //     filter.push(filterElement);
-  //   } else {
-  //     var index = filter.indexOf(filterElement)
-  //     filter.splice(index, 1)
-  //   }
-
-  //   let obj = {}
-  //   obj[filterType] = filter
-  //   this.setState(obj);
-  //   console.log('verify:', obj)
-  //   if (filterType === 'seasonFilter') {
-  //     this.props.filterSeason(this.state.seasonFilter)
-  //   }
-  // }
 
   render() {
     return (
@@ -100,7 +69,7 @@ class Filters extends React.Component {
           <div className="bold">Language</div>
           {
             this.state.languages.map ((language, index) => (
-              <Language language = {language} key = {language + "." + index} handleChange = {this.props.handleChange} />
+              <Language language = {language} key = {language + "." + index} handleChange = {this.props.handleChange}/>
             ))
             }
         </div>

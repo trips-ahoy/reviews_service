@@ -20,9 +20,7 @@ class Review extends React.Component {
   }
 
   componentDidMount() {
-    console.log('review in review', this.props.review)
     this.fetchCurrentUser();
-
   }
 
 
@@ -30,7 +28,6 @@ class Review extends React.Component {
 
     axios.get(`/api/listings${window.location.pathname}reviews/user/${this.props.userId}`)
       .then(({data}) => {
-        console.log(data)
         this.setState ({
           user: data
         })

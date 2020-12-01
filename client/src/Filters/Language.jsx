@@ -23,11 +23,13 @@ class Language extends React.Component {
     }
   }
 
+
   handleClick(event) {
 
     if (event) {
       event.preventDefault();
     }
+
 
     var setToggle = () => {
         return new Promise ((resolve, reject) => {
@@ -38,9 +40,12 @@ class Language extends React.Component {
        })
     }
 
+
     setToggle()
       .then ((toggle) => {
+        if (this.props.languages != "All languages") {
         this.props.handleChange(this.props.language, this.state.isToggleOn, "languageFilter");
+        }
       })
       .catch( (err) => {
         console.log(err)
@@ -53,11 +58,11 @@ class Language extends React.Component {
     return (
       <div>
       {
-        !this.state.isToggleOn &&
+        (!this.state.isToggleOn || this.state.deselectToggle) &&
         <button className= 'sqrbtn' aria-label='button-language' language = {this.props.language} onClick = {this.handleClick} ><i class="far fa-circle"></i></button>
       }
       {
-        this.state.isToggleOn &&
+        this.state.isToggleOn   &&
         <button className= 'sqrbtn' aria-label='button-language' language = {this.props.language} onClick = {this.handleClick} ><i class="fas fa-dot-circle"></i></button>
       }
       {this.props.language}

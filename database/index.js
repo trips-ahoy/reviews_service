@@ -4,7 +4,7 @@ const mysql = require('mysql');
 //set up connection parameters
 const connection = mysql.createConnection({
  hostname: 'localhost',
- user: 'student',
+ user: 'student1',
  password: 'student1',
  database: 'reviewsMod'
 });
