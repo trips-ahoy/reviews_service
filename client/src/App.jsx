@@ -276,7 +276,6 @@ class App extends React.Component {
       })
     })
     .then(() => {
-      console.log('all states have been set')
       this.setState ({
         loaded: true
       })

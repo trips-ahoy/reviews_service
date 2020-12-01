@@ -27,7 +27,6 @@ class Filters extends React.Component {
   createLangList () {
     var langlist = ['All languages']
     var languageObj = this.props.summary[1]
-    console.log('this is languages', this.props.summary[1])
     for (var key in languageObj) {
       langlist.push(key)
     }
