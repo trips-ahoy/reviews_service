@@ -10,10 +10,12 @@ class PageIndex extends React.Component {
   }
 
   decreasePage() {
+    console.log('decreasepage is clicked')
     this.props.handleClick('previous')
   }
 
   increasePage() {
+    console.log('increaspage is clicked')
     this.props.handleClick('next')
   }
 
