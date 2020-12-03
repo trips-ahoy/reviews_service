@@ -4,3 +4,6 @@ node_modules
 
 *.pem
 
+##databaseLoginInfo
+
+database/mysql_login.js
