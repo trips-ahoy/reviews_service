@@ -1,5 +1,11 @@
-const reviewSchema = new mongoose.Schema({
-  _id: Number,
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/tripreviews', {userNewUrlParser: true});
+
+const mongoConnect = mongoose.connection;
+mongoConnect.on('error', console.error.bind(console, 'connection error:'));
+mongoConnect.once('open', () => console.log('connected to mongoose'));
+
+const listingSchema = new mongoose.Schema({
   listing_id: Number,
   listing: String,
   reviews: [
@@ -31,3 +37,10 @@ const reviewSchema = new mongoose.Schema({
     }
   ]
 });
+
+const Listing = mongoose.model('Listing', listingSchema);
+
+module.exports = {
+  mongoConnect: mongoConnect,
+  model: Listing
+};
