@@ -7,3 +7,7 @@ node_modules
 ##databaseLoginInfo
 
 database/login.js
+
+##media
+
+data_generation/images
