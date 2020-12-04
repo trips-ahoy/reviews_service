@@ -8,6 +8,7 @@ node_modules
 
 database/login.js
 
-##media
+##large data
 
 data_generation/images
+data_generation/data
