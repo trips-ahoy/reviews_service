@@ -6,4 +6,4 @@ node_modules
 
 ##databaseLoginInfo
 
-database/mysql_login.js
+database/login.js

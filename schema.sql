@@ -1,6 +1,6 @@
-CREATE DATABASE reviews;
+CREATE DATABASE tripreviews;
 
-\c reviews;
+\c tripreviews;
 
 CREATE TABLE users (
 id BIGSERIAL PRIMARY KEY,
