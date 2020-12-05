@@ -12,3 +12,7 @@ database/login.js
 
 data_generation/images
 data_generation/pg/pg_data
+
+##dsStore
+
+*.DS_store
