@@ -5,7 +5,7 @@ const argv = require('yargs').argv;
 
 const writeDataToCSV = require('./pgWriteFunc');
 
-const numListings = argv.lines || 100;
+const numListings = argv.lines || 10000000;
 const listingsFilePath = argv.output || path.join(__dirname, 'pg_data', 'listings.csv');
 const listingsStream = fs.createWriteStream(listingsFilePath);
 
