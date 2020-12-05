@@ -8,7 +8,7 @@ node_modules
 
 database/login.js
 
-##large data
+##largeData
 
 data_generation/images
-data_generation/data
+data_generation/pg/pg_data

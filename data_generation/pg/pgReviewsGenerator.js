@@ -1,5 +1,14 @@
 const fs = require('fs');
 const faker = require('faker');
+const path = require('path');
+const argv = require('yargs').argv;
+
+const writeDataToCSV = require('./pgWriteFunc');
+
+const numReviews = argv.lines || 100;
+const reviewsFilePath = argv.output || path.join(__dirname, 'pg_data', 'reviews.csv');
+const reviewsStream = fs.createWriteStream(reviewsFilePath);
+
 
 const createReview = () => {
   const travelTypeOptions = ['families', 'couples', 'solo', 'business', 'friends'];
@@ -7,7 +16,7 @@ const createReview = () => {
   const seasonOptions = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'];
 
   const listing_id = Math.floor((Math.random() * 10000000) + 1);
-  const user_id = Math.floor((Math.random() * 1000) + 1);
+  const user_id = Math.floor((Math.random() * 10000) + 1);
   const title = faker.lorem.sentence();
   const full_text = faker.lorem.sentences();
   const date = faker.date.month() + ' 20' + Math.floor(Math.random() * 10 + 10)
@@ -25,3 +34,8 @@ const createReview = () => {
 
   return `${listing_id},${user_id},${title},${full_text},${date},${season},${travel_type},${language},${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
 };
+
+reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful_count\n`, 'utf-8');
+writeDataToCSV(numReviews, createReview, reviewsStream, 'utf-8', () => {
+  reviewsStream.end();
+});
