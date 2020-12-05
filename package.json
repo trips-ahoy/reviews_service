@@ -7,7 +7,9 @@
     "start": "nodemon server",
     "build": "webpack -w",
     "test": "jest --coverage --runInBand --detectOpenHandles",
-    "seed": "node seed.js"
+    "pgGenerateListings": "node data_generation/pg/pgListingsGenerator.js",
+    "pgGenerateReviews": "node data_generation/pg/pgReviewsGenerator.js",
+    "pgGenerateUsers": "node data_generation/pg/pgUsersGenerator.js"
   },
   "repository": {
     "type": "git",
@@ -46,10 +48,12 @@
     "enzyme-adapter-react-16": "^1.15.5",
     "jest": "^26.6.3",
     "jest-environment-enzyme": "^7.1.2",
+    "path": "^0.12.7",
     "react-test-renderer": "^17.0.1",
     "style-loader": "^2.0.0",
     "webpack": "^5.4.0",
     "webpack-cli": "^4.2.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^4.2.2",
+    "yargs": "^16.1.1"
   }
 }

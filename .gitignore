@@ -7,3 +7,8 @@ node_modules
 ##databaseLoginInfo
 
 database/login.js
+
+##largeData
+
+data_generation/images
+data_generation/pg/pg_data
