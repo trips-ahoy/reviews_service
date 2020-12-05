@@ -1,7 +1,6 @@
 const fs = require('fs');
 const faker = require('faker');
 const path = require('path');
-const argv = require('yargs').argv;
 
 const { numListings } = require('./pgListingsGenerator');
 const { numUsers } = require('./pgUsersGenerator');
@@ -9,8 +8,8 @@ const { numUsers } = require('./pgUsersGenerator');
 
 const writeDataToCSV = require('./pgWriteFunc');
 
-const numReviews = argv.lines || 100;
-const reviewsFilePath = argv.output || path.join(__dirname, 'pg_data', 'reviews.csv');
+const numReviews = 100;
+const reviewsFilePath = path.join(__dirname, 'pg_data', 'reviews.csv');
 const reviewsStream = fs.createWriteStream(reviewsFilePath);
 
 
