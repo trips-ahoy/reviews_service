@@ -62,21 +62,10 @@ const createListing = (i) => {
   const listing = JSON.stringify({
     listing_id: i,
     listing: faker.address.country(),
-    reviews: createXReviews(5)
+    reviews: createXReviews(5) // will make a variable num of reviews. doesn't this mean amount of data will be different for mongo vs. pg? as each review will have a user (vs. separate users table?)
   });
   return listing;
 };
-
-// const createXListings = (x) => {
-//   const listingsArray = [];
-//   for (let i = 0; i < x; i++) {
-//     const listing = createListing(i);
-//     listingsArray.push(listing);
-//   }
-//   return listingsArray;
-// };
-
-
 
 const writeDataToJSON = (numListings, writeStream, encoding, done) => {
   let i = 0;
