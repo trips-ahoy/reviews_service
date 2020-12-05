@@ -3,6 +3,10 @@ const faker = require('faker');
 const path = require('path');
 const argv = require('yargs').argv;
 
+const { numListings } = require('./pgListingsGenerator');
+const { numUsers } = require('./pgUsersGenerator');
+
+
 const writeDataToCSV = require('./pgWriteFunc');
 
 const numReviews = argv.lines || 100;
@@ -15,8 +19,8 @@ const createReview = () => {
   const langOptions = [ 'Chinese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'];
   const seasonOptions = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'];
 
-  const listing_id = Math.floor((Math.random() * 10000000) + 1);
-  const user_id = Math.floor((Math.random() * 10000) + 1);
+  const listing_id = Math.floor((Math.random() * numListings) + 1);
+  const user_id = Math.floor((Math.random() * numUsers) + 1);
   const title = faker.lorem.sentence();
   const full_text = faker.lorem.sentences();
   const date = faker.date.month() + ' 20' + Math.floor(Math.random() * 10 + 10)
@@ -32,7 +36,7 @@ const createReview = () => {
   const photo3 = `s3 link here ${randomPhoto3}`
   const helpful_count = Math.floor(Math.random() * 500);
 
-  return `${listing_id},${user_id},${title},${full_text},${date},${season},${travel_type},${language},${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
+  return `${listing_id},${user_id},"${title}","${full_text}",${date},${season},${travel_type},"${language}",${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
 };
 
 reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful_count\n`, 'utf-8');

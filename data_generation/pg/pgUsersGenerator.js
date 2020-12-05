@@ -19,10 +19,14 @@ const createUser = () => {
   const avatar = `s3 link here ${randomAvatarNum}`;
   const followers = Math.floor(Math.random() * 2000);
 
-  return `${name},${username},${address},${contributions},${votes},${avatar},${followers}\n`;
+  return `"${name}","${username}","${address}",${contributions},${votes},${avatar},${followers}\n`;
 };
 
 usersStream.write(`name, username, address, contributions, votes, avatar, followers\n`, 'utf-8');
 writeDataToCSV(numUsers, createUser, usersStream, 'utf-8', () => {
   usersStream.end();
 });
+
+module.exports = {
+  numUsers
+}

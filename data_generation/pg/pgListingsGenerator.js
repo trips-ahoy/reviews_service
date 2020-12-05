@@ -11,10 +11,14 @@ const listingsStream = fs.createWriteStream(listingsFilePath);
 
 const createListing = () => {
   const listing = faker.address.country();
-  return `${listing}\n`;
+  return `"${listing}"\n`;
 };
 
 listingsStream.write(`listing\n`, 'utf-8');
 writeDataToCSV(numListings, createListing, listingsStream, 'utf-8', () => {
   listingsStream.end();
 });
+
+module.exports = {
+  numListings
+}
