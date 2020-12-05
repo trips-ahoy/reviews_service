@@ -16,7 +16,7 @@ const createUser = () => {
   const contributions = Math.floor(Math.random() * 500);
   const votes = Math.floor(Math.random() * 500);
   const randomAvatarNum = Math.floor((Math.random() * 1000) + 1).toString().padStart(4, 0);
-  const avatar = `s3 link here ${randomAvatarNum}`;
+  const avatar = `https://sdc-reviews-images.s3-us-west-2.amazonaws.com/${randomAvatarNum}.jpg`;
   const followers = Math.floor(Math.random() * 2000);
 
   return `"${name}","${username}","${address}",${contributions},${votes},${avatar},${followers}\n`;

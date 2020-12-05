@@ -31,9 +31,9 @@ const createReview = () => {
   const randomPhoto1 = Math.floor((Math.random() * 1000) + 1).toString().padStart(4, 0);
   const randomPhoto2 = Math.floor((Math.random() * 1000) + 1).toString().padStart(4, 0);
   const randomPhoto3 = Math.floor((Math.random() * 1000) + 1).toString().padStart(4, 0);
-  const photo1 = `s3 link here ${randomPhoto1}`
-  const photo2 = `s3 link here ${randomPhoto2}`
-  const photo3 = `s3 link here ${randomPhoto3}`
+  const photo1 = `https://sdc-reviews-images.s3-us-west-2.amazonaws.com/${randomPhoto1}.jpg`;
+  const photo2 = `https://sdc-reviews-images.s3-us-west-2.amazonaws.com/${randomPhoto2}.jpg`;
+  const photo3 = `https://sdc-reviews-images.s3-us-west-2.amazonaws.com/${randomPhoto3}.jpg`;
   const helpful_count = Math.floor(Math.random() * 500);
 
   return `${listing_id},${user_id},"${title}","${full_text}",${date},${season},${travel_type},"${language}",${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
