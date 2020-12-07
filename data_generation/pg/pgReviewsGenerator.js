@@ -5,7 +5,6 @@ const path = require('path');
 const { numListings } = require('./pgListingsGenerator');
 const { numUsers } = require('./pgUsersGenerator');
 
-
 const writeDataToCSV = require('./pgWriteFunc');
 
 const numReviews = 100;
@@ -13,12 +12,12 @@ const reviewsFilePath = path.join(__dirname, 'pg_data', 'reviews.csv');
 const reviewsStream = fs.createWriteStream(reviewsFilePath);
 
 
-const createReview = () => {
+const createReview = (listingId) => {
   const travelTypeOptions = ['families', 'couples', 'solo', 'business', 'friends'];
   const langOptions = [ 'Chinese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'];
   const seasonOptions = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'];
 
-  const listing_id = Math.floor((Math.random() * numListings) + 1);
+  const listing_id = listingId;
   const user_id = Math.floor((Math.random() * numUsers) + 1);
   const title = faker.lorem.sentence();
   const full_text = faker.lorem.sentences();
@@ -38,12 +37,30 @@ const createReview = () => {
   return `${listing_id},${user_id},"${title}","${full_text}",${date},${season},${travel_type},"${language}",${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
 };
 
+const generateWeightedRandomNum = (min, middle, max) => { // 5, 20, 50
+  var randomize = Math.floor(Math.random() * 5 + 1);
+
+  // 20% of the time, generate a random high num
+  if (randomize === 5) {
+    return Math.floor(Math.random() * (max - middle) + middle);
+  }
+  
+  // 80% of the time, generate a random low num
+  return Math.floor(Math.random() * (middle - min) + min);
+}
+
+const createWeightedNumOfReviews = (listingId, min, middle, max) => {
+  const reviews = '';
+  
+  var randomNum = generateWeightedRandomNum(min, middle, max);
+
+  for (let j = 0; j < randomNum; j++)
+    reviews += createReview(listingId);
+  }
+  return reviews;
+}
+
 reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful_count\n`, 'utf-8');
-writeDataToCSV(numReviews, createReview, reviewsStream, 'utf-8', () => {
+writeDataToCSV(5, () => createWeightedNumOfReviews(i, 5, 20, 50), reviewsStream, 'utf-8', () => {
   reviewsStream.end();
 });
-
-// for loop inside of listings generator write func
-  // for each listing, numReviews will be random num between 5-20
-  // change createReview func to pass in listing id
-  // call writeDataToCSV with numReviews, () => createReview(i), reviewsStream
