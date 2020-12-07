@@ -3,6 +3,7 @@ const faker = require('faker');
 const path = require('path');
 
 const { writeDataToCSV, numListings, numUsers } = require('./pgGeneratorConfig.js');
+const generateWeightedRandomNum = require('../generateWeightedRandomNum.js');
 
 const reviewsFilePath = path.join(__dirname, 'pg_data', 'reviews.csv');
 const reviewsStream = fs.createWriteStream(reviewsFilePath);
@@ -30,18 +31,6 @@ const createReview = (listingId) => {
   const helpful_count = Math.floor(Math.random() * 500);
 
   return `${listing_id},${user_id},"${title}","${full_text}",${date},${season},${travel_type},"${language}",${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
-};
-
-const generateWeightedRandomNum = (min, middle, max) => { // 5, 20, 50
-  var randomize = Math.floor(Math.random() * 5 + 1);
-
-  // 20% of the time, generate a random high num
-  if (randomize === 5) {
-    return Math.floor(Math.random() * (max - middle) + middle);
-  }
-  
-  // 80% of the time, generate a random low num
-  return Math.floor(Math.random() * (middle - min) + min);
 };
 
 const createWeightedNumOfReviews = (listingId, min, middle, max) => {

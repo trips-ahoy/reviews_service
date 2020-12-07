@@ -2,6 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const faker = require('faker');
 
+// same generate random weighted num of reviews functionality I'm using in postgres
+const generateWeightedRandomNum = require('../generateWeightedRandomNum.js');
+
 const numListings = 10;
 const listingsFilePath = path.join(__dirname, 'mongo_data', 'listings.json');
 const listingsStream = fs.createWriteStream(listingsFilePath);
@@ -11,7 +14,6 @@ const createUser = () => {
   const name = faker.name.firstName() + ' ' + faker.name.lastName();
 
   return {
-    // id?
     name: name,
     username: name.split(' ').join('.'),
     address: faker.address.city() + ', ' + faker.address.country(),
@@ -32,7 +34,6 @@ const createReview = (i) => {
   const randomPhoto3 = Math.floor((Math.random() * 1000) + 1).toString().padStart(4, 0);
 
   return {
-    // listing_id and user_id?
     id: i,
     title: faker.lorem.sentence(),
     full_text: faker.lorem.sentences(),
@@ -58,11 +59,11 @@ const createXReviews = (x) => {
   return reviewsArray;
 };
 
-const createListing = (i) => { // check with 1, 3, 5 reviews per listing - check space
+const createListing = (i) => { 
   const listing = JSON.stringify({
     listing_id: i,
     listing: faker.address.country(),
-    reviews: createXReviews(5) // will make a variable num of reviews. doesn't this mean amount of data will be different for mongo vs. pg? as each review will have a user (vs. separate users table?)
+    reviews: createXReviews(generateWeightedRandomNum()) 
   });
   return listing;
 };
