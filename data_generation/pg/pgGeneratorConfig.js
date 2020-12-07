@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-const numListings = 10; //10000000;
-const numUsers = 10; //1000000;
+const numListings = 10000000;
+const numUsers = 1000000;
 
 const writeDataToCSV = (numLines, itemCreator, writeStream, encoding, done) => {
   let i = numLines;
