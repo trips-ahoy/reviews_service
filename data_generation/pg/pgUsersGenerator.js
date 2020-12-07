@@ -4,7 +4,7 @@ const path = require('path');
 
 const writeDataToCSV = require('./pgWriteFunc');
 
-const numUsers = 100;
+const numUsers = 100; // 1 mil users
 const usersFilePath = path.join(__dirname, 'pg_data', 'users.csv');
 const usersStream = fs.createWriteStream(usersFilePath);
 

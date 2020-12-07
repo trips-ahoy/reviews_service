@@ -58,7 +58,7 @@ const createXReviews = (x) => {
   return reviewsArray;
 };
 
-const createListing = (i) => {
+const createListing = (i) => { // check with 1, 3, 5 reviews per listing - check space
   const listing = JSON.stringify({
     listing_id: i,
     listing: faker.address.country(),
@@ -91,8 +91,10 @@ const writeDataToJSON = (numListings, writeStream, encoding, done) => {
   writing();
 }
 
-listingsStream.write('[', 'utf-8');
+listingsStream.write('[', 'utf-8'); // do i need to make it a json array?
 writeDataToJSON(numListings, listingsStream, 'utf-8', () => {
   listingsStream.write(']', 'utf-8');
   listingsStream.end();
 });
+
+// evan's import -"mImport": "mongoimport --db bigChungus --file bigSeedTest/data.json",

@@ -42,3 +42,8 @@ reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel
 writeDataToCSV(numReviews, createReview, reviewsStream, 'utf-8', () => {
   reviewsStream.end();
 });
+
+// for loop inside of listings generator write func
+  // for each listing, numReviews will be random num between 5-20
+  // change createReview func to pass in listing id
+  // call writeDataToCSV with numReviews, () => createReview(i), reviewsStream
