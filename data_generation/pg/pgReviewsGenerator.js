@@ -2,15 +2,10 @@ const fs = require('fs');
 const faker = require('faker');
 const path = require('path');
 
-const { numListings } = require('./pgListingsGenerator');
-const { numUsers } = require('./pgUsersGenerator');
+const { writeDataToCSV, numListings, numUsers } = require('./pgGeneratorConfig.js');
 
-const writeDataToCSV = require('./pgWriteFunc');
-
-const numReviews = 100;
 const reviewsFilePath = path.join(__dirname, 'pg_data', 'reviews.csv');
 const reviewsStream = fs.createWriteStream(reviewsFilePath);
-
 
 const createReview = (listingId) => {
   const travelTypeOptions = ['families', 'couples', 'solo', 'business', 'friends'];
@@ -47,20 +42,22 @@ const generateWeightedRandomNum = (min, middle, max) => { // 5, 20, 50
   
   // 80% of the time, generate a random low num
   return Math.floor(Math.random() * (middle - min) + min);
-}
+};
 
 const createWeightedNumOfReviews = (listingId, min, middle, max) => {
-  const reviews = '';
+  var reviews = '';
   
   var randomNum = generateWeightedRandomNum(min, middle, max);
 
-  for (let j = 0; j < randomNum; j++)
+  for (let i = 0; i < randomNum; i++) {
     reviews += createReview(listingId);
   }
   return reviews;
-}
+};
 
 reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful_count\n`, 'utf-8');
-writeDataToCSV(5, () => createWeightedNumOfReviews(i, 5, 20, 50), reviewsStream, 'utf-8', () => {
+
+// for each listing, generate weighted random num of reviews, assigning each of those reviews the current listingId (index in do/while loop, + 1), and write to csv
+writeDataToCSV(numListings, (i) => createWeightedNumOfReviews(i + 1, 5, 20, 50), reviewsStream, 'utf-8', () => {
   reviewsStream.end();
 });
