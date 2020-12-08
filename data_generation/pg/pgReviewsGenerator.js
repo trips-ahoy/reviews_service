@@ -47,6 +47,6 @@ const createWeightedNumOfReviews = (listingId, min, middle, max) => {
 reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful_count\n`, 'utf-8');
 
 // for each listing, generate weighted random num of reviews, assigning each of those reviews the current listingId (index in do/while loop, + 1), and write to csv
-writeDataToCSV(numListings, (i) => createWeightedNumOfReviews(i + 1, 5, 20, 50), reviewsStream, 'utf-8', () => {
+writeDataToCSV(numListings, (i) => createWeightedNumOfReviews(i + 1, 5, 10, 25), reviewsStream, 'utf-8', () => {
   reviewsStream.end();
 });

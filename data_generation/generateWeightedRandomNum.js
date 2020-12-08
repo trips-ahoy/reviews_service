@@ -1,4 +1,4 @@
-const generateWeightedRandomNum = (min, middle, max) => { // 5, 20, 50
+const generateWeightedRandomNum = (min, middle, max) => { // 5, 10, 25
   var randomize = Math.floor(Math.random() * 5 + 1);
 
   // 20% of the time, generate a random high num
