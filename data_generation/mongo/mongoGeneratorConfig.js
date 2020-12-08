@@ -1,6 +1,8 @@
 const fs = require('fs');
 
-const numListings = 10;
+const numListings = 1000000;
+const iStart = 0;
+const iEnd = 1000000;
 
 // configured to generate x number of listings at a time, with ability to change starting/ending value of i 
 // this way can generate 1 mil listings, seed to mongo, empty listings.json file, generate 1 mil more listings (with i start/end going up by 1 mil each time)
@@ -31,5 +33,7 @@ const writeDataToJSON = (numListings, iStart, iEnd, itemCreator, writeStream, en
 
 module.exports = {
   writeDataToJSON,
-  numListings
+  numListings,
+  iStart,
+  iEnd
 }

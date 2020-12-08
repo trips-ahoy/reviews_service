@@ -5,7 +5,7 @@ const faker = require('faker');
 const listingsFilePath = path.join(__dirname, 'mongo_data', 'listings.json');
 const listingsStream = fs.createWriteStream(listingsFilePath);
 
-const { numListings, writeDataToJSON } = require('./mongoGeneratorConfig.js');
+const { numListings, iStart, iEnd, writeDataToJSON } = require('./mongoGeneratorConfig.js');
 
 // same generate random weighted num of reviews functionality I'm using in postgres
 const generateWeightedRandomNum = require('../generateWeightedRandomNum.js');
@@ -70,7 +70,7 @@ const createListing = (i) => {
 };
 
 listingsStream.write('[', 'utf-8');
-writeDataToJSON(numListings, 10, 20, createListing, listingsStream, 'utf-8', () => {
+writeDataToJSON(numListings, iStart, iEnd, createListing, listingsStream, 'utf-8', () => {
   listingsStream.write(']', 'utf-8');
   listingsStream.end();
 });
