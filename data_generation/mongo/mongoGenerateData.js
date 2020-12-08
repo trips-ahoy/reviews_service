@@ -70,7 +70,7 @@ const createListing = (i) => {
 };
 
 listingsStream.write('[', 'utf-8');
-writeDataToJSON(numListings, createListing, listingsStream, 'utf-8', () => {
+writeDataToJSON(numListings, 10, 20, createListing, listingsStream, 'utf-8', () => {
   listingsStream.write(']', 'utf-8');
   listingsStream.end();
 });
