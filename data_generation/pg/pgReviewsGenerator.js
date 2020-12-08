@@ -1,25 +1,19 @@
 const fs = require('fs');
 const faker = require('faker');
 const path = require('path');
-const argv = require('yargs').argv;
 
-const { numListings } = require('./pgListingsGenerator');
-const { numUsers } = require('./pgUsersGenerator');
+const { writeDataToCSV, numListings, numUsers } = require('./pgGeneratorConfig.js');
+const generateWeightedRandomNum = require('../generateWeightedRandomNum.js');
 
-
-const writeDataToCSV = require('./pgWriteFunc');
-
-const numReviews = argv.lines || 100;
-const reviewsFilePath = argv.output || path.join(__dirname, 'pg_data', 'reviews.csv');
+const reviewsFilePath = path.join(__dirname, 'pg_data', 'reviews.csv');
 const reviewsStream = fs.createWriteStream(reviewsFilePath);
 
-
-const createReview = () => {
+const createReview = (listingId) => {
   const travelTypeOptions = ['families', 'couples', 'solo', 'business', 'friends'];
   const langOptions = [ 'Chinese', 'English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'];
   const seasonOptions = ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb'];
 
-  const listing_id = Math.floor((Math.random() * numListings) + 1);
+  const listing_id = listingId;
   const user_id = Math.floor((Math.random() * numUsers) + 1);
   const title = faker.lorem.sentence();
   const full_text = faker.lorem.sentences();
@@ -39,7 +33,20 @@ const createReview = () => {
   return `${listing_id},${user_id},"${title}","${full_text}",${date},${season},${travel_type},"${language}",${rating},${photo1},${photo2},${photo3},${helpful_count}\n`;
 };
 
+const createWeightedNumOfReviews = (listingId, min, middle, max) => {
+  var reviews = '';
+  
+  var randomNum = generateWeightedRandomNum(min, middle, max);
+
+  for (let i = 0; i < randomNum; i++) {
+    reviews += createReview(listingId);
+  }
+  return reviews;
+};
+
 reviewsStream.write(`listing_id, user_id, title, full_text, date, season, travel_type, language, rating, photo1, photo2, photo3, helpful_count\n`, 'utf-8');
-writeDataToCSV(numReviews, createReview, reviewsStream, 'utf-8', () => {
+
+// for each listing, generate weighted random num of reviews, assigning each of those reviews the current listingId (index in do/while loop, + 1), and write to csv
+writeDataToCSV(numListings, (i) => createWeightedNumOfReviews(i + 1, 5, 10, 25), reviewsStream, 'utf-8', () => {
   reviewsStream.end();
 });

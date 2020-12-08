@@ -12,6 +12,7 @@ database/login.js
 
 data_generation/images
 data_generation/pg/pg_data
+data_generation/mongo/mongo_data
 
 ##dsStore
 

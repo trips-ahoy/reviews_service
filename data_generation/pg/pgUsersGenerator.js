@@ -1,12 +1,10 @@
 const fs = require('fs');
 const faker = require('faker');
 const path = require('path');
-const argv = require('yargs').argv;
 
-const writeDataToCSV = require('./pgWriteFunc');
+const { writeDataToCSV, numUsers } = require('./pgGeneratorConfig.js');
 
-const numUsers = argv.lines || 100;
-const usersFilePath = argv.output || path.join(__dirname, 'pg_data', 'users.csv');
+const usersFilePath = path.join(__dirname, 'pg_data', 'users.csv');
 const usersStream = fs.createWriteStream(usersFilePath);
 
 const createUser = () => {
@@ -26,7 +24,3 @@ usersStream.write(`name, username, address, contributions, votes, avatar, follow
 writeDataToCSV(numUsers, createUser, usersStream, 'utf-8', () => {
   usersStream.end();
 });
-
-module.exports = {
-  numUsers
-}

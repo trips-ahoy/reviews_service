@@ -1,5 +1,8 @@
 const fs = require('fs');
 
+const numListings = 10000000;
+const numUsers = 1000000;
+
 const writeDataToCSV = (numLines, itemCreator, writeStream, encoding, done) => {
   let i = numLines;
   const oneTenth = numLines / 10;
@@ -7,7 +10,7 @@ const writeDataToCSV = (numLines, itemCreator, writeStream, encoding, done) => {
     let canWrite = true;
     do {
       i--;
-      let item = itemCreator();
+      let item = itemCreator(i);
       if (i % oneTenth === 0) { // console.log progress every 10%
         console.log('another one tenth done, currently on: ', i);
       }
@@ -24,4 +27,8 @@ const writeDataToCSV = (numLines, itemCreator, writeStream, encoding, done) => {
   writing();
 }
 
-module.exports = writeDataToCSV;
+module.exports = {
+  writeDataToCSV,
+  numListings,
+  numUsers
+}
