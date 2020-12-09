@@ -10,6 +10,7 @@
     "pgGenerateListings": "node data_generation/pg/pgListingsGenerator.js",
     "pgGenerateReviews": "node data_generation/pg/pgReviewsGenerator.js",
     "pgGenerateUsers": "node data_generation/pg/pgUsersGenerator.js",
+    "mongoGenerateData": "node data_generation/mongo/mongoGenerateData.js",
     "mongoSeed": "mongoimport --db tripreviews --collection listings --type=json --file='/Users/jnweiner/hrCapstone/reviews_service/data_generation/mongo/mongo_data/listings.json' --jsonArray"
   },
   "repository": {
