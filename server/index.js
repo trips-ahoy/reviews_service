@@ -3,9 +3,8 @@ const app = express();
 const port = 3003;
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const db = require('../database/index.js');
+// const db = require('../database/index.js');
 const pool = require('../database/postgres_index.js');
-
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
@@ -13,25 +12,22 @@ app.use(morgan('dev'));
 
 app.use('/:listing_id', express.static('public'));
 
-
-
 app.listen(port, () => console.log(`listening on port ${port}`));
-
 
 app.get('/api/listings/:listing_id/reviews', function (req, res) {
 
-  const id = req.params.listing_id;
+  const values = [req.params.listing_id];
 
-	const sql = `SELECT * FROM reviews WHERE listing_id = ?`;
+	const sql = 'select reviews.*, users.id as user_id, users.name as user_name, users.address as user_address, users.contributions as user_contributions, users.votes as user_votes, users.avatar as user_avatar, users.followers as user_followers from reviews, users where reviews.listing_id = $1 and reviews.user_id = users.id';
 
-  db.query(sql, id, (err, data) => {
+  pool.query(sql, values, (err, data) => {
     if (err) {
-      console.log('Error fetching reviews', err);
-      res.send(500);
+      console.log(err);
+      res.sendStatus(500);
     } else {
-      res.send(data);
+      res.send(data.rows);
     }
-  })
+  });
 
 })
 

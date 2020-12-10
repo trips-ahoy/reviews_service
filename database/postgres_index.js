@@ -16,7 +16,6 @@ pool.query('SELECT NOW()', (err, res) => {
   } else {
     console.log('connected to pg at ', res.rows);
   }
-  pool.end();
 });
 
 module.exports = pool;
