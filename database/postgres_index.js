@@ -9,9 +9,14 @@ const pool = new Pool({
   database: 'tripreviews'
 });
 
-// pool.query('select * from listings', (err, res) => {
-//   console.log(res.rows);
-//   pool.end();
-// });
+//query to test that connection is working
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('connected to pg at ', res.rows);
+  }
+  pool.end();
+});
 
 module.exports = pool;
