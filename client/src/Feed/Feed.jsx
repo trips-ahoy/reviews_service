@@ -20,7 +20,7 @@ class Feed extends React.Component {
     return (
       <div>
           {this.props.currentReviews.map ((review, index) => (
-          <Review review={review} key={review+'.'+index} userId = {review.user_id}/>
+          <Review review={review} key={review.id}/>
           ))}
       </div>
     );
