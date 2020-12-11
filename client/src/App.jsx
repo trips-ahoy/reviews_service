@@ -183,8 +183,8 @@ class App extends React.Component {
     axios.get(`/api/listings${window.location.pathname}reviews/filtered`, {
       params: {
         lang: this.state.languageFilter,
-        rating: this.state.ratingFilter;,
-        travel: this.state.travelFilter;,
+        rating: this.state.ratingFilter,
+        travel: this.state.travelFilter,
         season: this.state.seasonFilter
       }
     })
