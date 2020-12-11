@@ -4,7 +4,7 @@ const Info = ({review}) => (
       <div className='infoContainer' >
         <div className = "review-rating">
           {
-            (review.rating === 0) &&
+            (review.rating === '0') &&
             <div className = "circles">
             <i class="far fa-circle"></i>
             <i class="far fa-circle"></i>
@@ -15,7 +15,7 @@ const Info = ({review}) => (
 
           }
           {
-            (review.rating === 1) &&
+            (review.rating === '1') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="far fa-circle"></i>
@@ -26,7 +26,7 @@ const Info = ({review}) => (
 
           }
           {
-            (review.rating === 2) &&
+            (review.rating === '2') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -37,7 +37,7 @@ const Info = ({review}) => (
 
           }
           {
-            (review.rating === 3) &&
+            (review.rating === '3') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -48,7 +48,7 @@ const Info = ({review}) => (
 
           }
           {
-            (review.rating === 4) &&
+            (review.rating === '4') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -59,7 +59,7 @@ const Info = ({review}) => (
 
           }
           {
-            (review.rating === 5) &&
+            (review.rating === '5') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
