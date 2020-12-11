@@ -220,7 +220,7 @@ class App extends React.Component {
       var ratings = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0};
       for (let i = 0; i < data.length; i++) {
         for (var key in ratings) {
-          if (data[i].rating === parseInt(key)) {
+          if (data[i].rating === key) {
             ratings[key]++;
           }
         }
