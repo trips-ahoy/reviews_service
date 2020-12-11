@@ -185,7 +185,7 @@ class App extends React.Component {
     var travel = this.state.travelFilter.join(",")
     var season = this.state.seasonFilter.join(",")
 
-    axios.get(`/api/listings${window.location.pathname}reviews/`, {
+    axios.get(`/api/listings${window.location.pathname}reviews/filtered`, {
       params: {
         lang: lang,
         rating: rating,
