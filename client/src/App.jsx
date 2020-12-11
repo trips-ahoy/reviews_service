@@ -180,17 +180,12 @@ class App extends React.Component {
 
 
   fetchReviews() {
-    var lang = this.state.languageFilter.join(",")
-    var rating = this.state.ratingFilter.join(",")
-    var travel = this.state.travelFilter.join(",")
-    var season = this.state.seasonFilter.join(",")
-
     axios.get(`/api/listings${window.location.pathname}reviews/filtered`, {
       params: {
-        lang: lang,
-        rating: rating,
-        travel: travel,
-        season: season
+        lang: this.state.languageFilter,
+        rating: this.state.ratingFilter;,
+        travel: this.state.travelFilter;,
+        season: this.state.seasonFilter
       }
     })
       .then(({data}) => {

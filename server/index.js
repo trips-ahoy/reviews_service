@@ -29,21 +29,9 @@ app.get('/api/listings/:listing_id/reviews', function (req, res) {
     }
   });
 
-})
+});
 
-  // here's what values looks like:
-  // [
-  //   '1',
-  //   'English',
-  //   'families,couples,solo,business,friends',
-  //   'Mar-May,Jun-Aug,Sep-Nov,Dec-Feb',
-  //   '1,2,3,4,5'
-  // ]
-
-  // how to separate into array form if in exp won't take array?
-
-
-app.get('/api/listings/:listing_id/reviews/filtered/', function (req, res) {
+app.get('/api/listings/:listing_id/reviews/filtered', function (req, res) {
 
   let sql = 'SELECT reviews.*, users.id AS user_id, users.name AS user_name, users.address AS user_address, users.contributions AS user_contributions, users.votes AS user_votes, users.avatar AS user_avatar, users.followers AS user_followers FROM reviews, users WHERE reviews.listing_id = $1 AND reviews.user_id = users.id ';
  
@@ -69,25 +57,18 @@ app.get('/api/listings/:listing_id/reviews/filtered/', function (req, res) {
   };
 
   // create reviews.language in()
-  var langs = req.query.lang.split(',');
-  addFilterToQuery(langs, 'language');
+  addFilterToQuery(req.query.lang, 'language');
   
   // create reviews.travel_type in()
-  var travelTypes = req.query.travel.split(',');
-  addFilterToQuery(travelTypes, 'travel_type');
+  addFilterToQuery(req.query.travel, 'travel_type');
 
   // create reviews.season in()
-  var seasons = req.query.season.split(',');
-  addFilterToQuery(seasons, 'season');
+  addFilterToQuery(req.query.season, 'season');
 
   // create reviews.rating in()
-  var ratings = req.query.rating.split(',');
-  addFilterToQuery(ratings, 'rating');
+  addFilterToQuery(req.query.rating, 'rating');
 
   sql += ';'
-
-  console.log(sql);
-  console.log(values);
 
   pool.query(sql, values, (err, data) => {
     if (err) {
@@ -98,26 +79,4 @@ app.get('/api/listings/:listing_id/reviews/filtered/', function (req, res) {
     }
   });
 
-})
-
-
-
-// app.get('/api/listings/:listing_id/reviews/user/:id', function (req, res) {
-
-//   var id = [req.params.id];
-//   console.log('look here',id)
-
-// 	const sql = `SELECT * FROM users WHERE id = ?`;
-
-//   db.query(sql, id, (err, data) => {
-//     if (err) {
-//       console.log('Error fetching user info:' , err);
-//       res.send(500);
-//     } else {
-//       res.send(data);
-//     }
-//   })
-
-// })
-
-
+});
