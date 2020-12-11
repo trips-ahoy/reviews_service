@@ -21,3 +21,8 @@ data_generation/mongo/mongo_data
 ##bundle
 
 public/bundle.js
+
+##newRelic
+
+newrelic_agent.log
+newrelic.js
