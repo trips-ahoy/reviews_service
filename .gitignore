@@ -17,3 +17,7 @@ data_generation/mongo/mongo_data
 ##dsStore
 
 *.DS_store
+
+##bundle
+
+public/bundle.js

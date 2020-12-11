@@ -180,10 +180,10 @@ class App extends React.Component {
 
 
   fetchReviews() {
-    var lang = this.state.languageFilter.join(" ")
-    var rating = this.state.ratingFilter.join(" ")
-    var travel = this.state.travelFilter.join(" ")
-    var season = this.state.seasonFilter.join(" ")
+    var lang = this.state.languageFilter.join(",")
+    var rating = this.state.ratingFilter.join(",")
+    var travel = this.state.travelFilter.join(",")
+    var season = this.state.seasonFilter.join(",")
 
     axios.get(`/api/listings${window.location.pathname}reviews/${lang}/${travel}/${rating}/${season}`)
       .then(({data}) => {
@@ -193,14 +193,10 @@ class App extends React.Component {
         return data;
       })
       .then((data) => {
-        var count = 0;
-        for (let i = 0; i < data.length; i++) {
-          count++
-        }
         this.setState ({
-          reviewCount: count
+          reviewCount: data.length
         })
-        return data
+        return data;
       })
       .then(() => {
         this.fetchInitialReviews()

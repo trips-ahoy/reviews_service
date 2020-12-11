@@ -16,9 +16,9 @@ app.listen(port, () => console.log(`listening on port ${port}`));
 
 app.get('/api/listings/:listing_id/reviews', function (req, res) {
 
-  const values = [req.params.listing_id];
+  let values = [req.params.listing_id];
 
-	const sql = 'select reviews.*, users.id as user_id, users.name as user_name, users.address as user_address, users.contributions as user_contributions, users.votes as user_votes, users.avatar as user_avatar, users.followers as user_followers from reviews, users where reviews.listing_id = $1 and reviews.user_id = users.id';
+  let sql = 'SELECT reviews.*, users.id AS user_id, users.name AS user_name, users.address AS user_address, users.contributions AS user_contributions, users.votes AS user_votes, users.avatar AS user_avatar, users.followers AS user_followers FROM reviews, users WHERE reviews.listing_id = $1 AND reviews.user_id = users.id';
 
   pool.query(sql, values, (err, data) => {
     if (err) {
@@ -34,121 +34,39 @@ app.get('/api/listings/:listing_id/reviews', function (req, res) {
 
 app.get('/api/listings/:listing_id/reviews/:languages/:travel/:rating/:season', function (req, res) {
 
-  const id = req.params.listing_id;
-  const lang = req.params.languages.split(" ");
-  const travel = req.params.travel.split(" ");
-  const rating = req.params.rating.split(" ");
-  const season = req.params.season.split(" ");
+  let sql = 'SELECT reviews.*, users.id AS user_id, users.name AS user_name, users.address AS user_address, users.contributions AS user_contributions, users.votes AS user_votes, users.avatar AS user_avatar, users.followers AS user_followers FROM reviews, users WHERE reviews.listing_id = $1 AND reviews.user_id = users.id AND reviews.language in($2) AND reviews.travel_type in($3) AND reviews.season in($4) AND reviews.rating in($5)';
+ 
+  let values = [req.params.listing_id, req.params.language, req.params.travel, req.params.season, req.params.rating]
 
-
-  let sql = `SELECT * FROM reviews WHERE listing_id = ?`
-  let items = [id]
-
-  //add languages to sql string
-  if (lang[0] !== 'none') {
-    let langStr = ` AND (`
-    for (let i=0; i < lang.length; i++) {
-      items.push(lang[i])
-      if (lang.length === 1) {
-        langStr = ' AND language = ? '
-      } else {
-        langStr = langStr+ 'language = ? OR '
-      }
-    }
-    if (lang.length === 1) {
-      var langFinal = langStr
-    } else {
-      var langFinal = langStr.substring(0, langStr.length-4) + ')'
-    }
-    sql = sql + langFinal
-  }
-
-  //add travel type to sql string
-  if (travel[0] !== 'none') {
-    let travelStr = ` AND (`
-    for (let i=0; i < travel.length; i++) {
-      items.push(travel[i])
-      if (travel.length === 1) {
-        travelStr = ' AND travel_type = ? '
-      } else {
-        travelStr = travelStr+ 'travel_type = ? OR '
-      }
-    }
-    if (travel.length === 1) {
-      var travelFinal = travelStr
-    } else {
-      var travelFinal = travelStr.substring(0, travelStr.length-4) + ')'
-    }
-    sql = sql + travelFinal
-  }
-
-  //add rating to sql string
-  if (rating[0] !== 'none') {
-    let ratingStr = ` AND (`
-    for (let i=0; i < rating.length; i++) {
-      items.push(rating[i])
-      if (rating.length === 1) {
-        ratingStr = ' AND rating = ? '
-      } else {
-        ratingStr = ratingStr+ 'rating = ? OR '
-      }
-    }
-    if (rating.length === 1) {
-      var ratingFinal = ratingStr
-    } else {
-      var ratingFinal = ratingStr.substring(0, ratingStr.length-4) + ')'
-    }
-    sql = sql + ratingFinal
-  }
-
-  //add season to sql string
-  if (season[0] !== 'none') {
-    let seasonStr = ` AND (`
-    for (let i=0; i < season.length; i++) {
-      items.push(season[i])
-      if (season.length === 1) {
-        seasonStr = ' AND season = ? '
-      } else {
-        seasonStr = seasonStr+ 'season = ? OR '
-      }
-    }
-    if (season.length === 1) {
-      var seasonFinal = seasonStr
-    } else {
-      var seasonFinal = seasonStr.substring(0, seasonStr.length-4) + ')'
-    }
-    sql = sql + seasonFinal
-  }
-
-  db.query(sql, items, (err, data) => {
+  pool.query(sql, values, (err, data) => {
     if (err) {
-      console.log('Error fetching reviews', err);
-      res.send(500);
+      console.log(err);
+      res.sendStatus(500);
     } else {
-      res.send(data);
+      res.send(data.rows);
     }
-  })
+  });
 
 })
 
 
 
-app.get('/api/listings/:listing_id/reviews/user/:id', function (req, res) {
+// app.get('/api/listings/:listing_id/reviews/user/:id', function (req, res) {
 
-  var id = [req.params.id];
-  console.log('look here',id)
+//   var id = [req.params.id];
+//   console.log('look here',id)
 
-	const sql = `SELECT * FROM users WHERE id = ?`;
+// 	const sql = `SELECT * FROM users WHERE id = ?`;
 
-  db.query(sql, id, (err, data) => {
-    if (err) {
-      console.log('Error fetching user info:' , err);
-      res.send(500);
-    } else {
-      res.send(data);
-    }
-  })
+//   db.query(sql, id, (err, data) => {
+//     if (err) {
+//       console.log('Error fetching user info:' , err);
+//       res.send(500);
+//     } else {
+//       res.send(data);
+//     }
+//   })
 
-})
+// })
 
 
