@@ -1,24 +1,21 @@
-//import in mysql
-const mysql = require('mysql');
-
+const { Pool } = require('pg');
 const LOGIN = require('./login.js');
 
-//set up connection parameters
-const connection = mysql.createConnection({
- hostname: 'localhost',
- user: LOGIN.MYSQL_USER,
- password: LOGIN.MYSQL_PASSWORD,
- database: 'reviewsMod'
+const pool = new Pool({
+  host: 'localhost',
+  post: 3003,
+  user: LOGIN.POSTGRES_USER,
+  password: LOGIN.POSTGRES_PASSWORD,
+  database: 'tripreviews'
 });
 
-//must specifically invoke connection:
-connection.connect(err => {
- if (err) {
-   console.log(err);
- } else {
-   console.log('Connected to MySql :)')
- }
+//query to test that connection is working
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('connected to pg at ', res.rows);
+  }
 });
-//export out connection for use
-module.exports = connection;
 
+module.exports = pool;

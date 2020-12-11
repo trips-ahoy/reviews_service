@@ -2,13 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3003;
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
-// const db = require('../database/index.js');
-const pool = require('../database/postgres_index.js');
+const pool = require('../database/index.js');
 
-app.use(bodyParser.json());
 app.use(morgan('dev'));
-
 
 app.use('/:listing_id', express.static('public'));
 
