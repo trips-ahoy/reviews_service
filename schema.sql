@@ -28,7 +28,7 @@ CREATE TABLE reviews (
   season VARCHAR(20),
   travel_type VARCHAR(20),
   language VARCHAR(50),
-  rating INT,
+  rating VARCHAR(10),
   photo1 VARCHAR(150),
   photo2 VARCHAR(150),
   photo3 VARCHAR(150),

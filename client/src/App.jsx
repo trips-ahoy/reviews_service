@@ -180,12 +180,14 @@ class App extends React.Component {
 
 
   fetchReviews() {
-    var lang = this.state.languageFilter.join(" ")
-    var rating = this.state.ratingFilter.join(" ")
-    var travel = this.state.travelFilter.join(" ")
-    var season = this.state.seasonFilter.join(" ")
-
-    axios.get(`/api/listings${window.location.pathname}reviews/${lang}/${travel}/${rating}/${season}`)
+    axios.get(`/api/listings${window.location.pathname}reviews/filtered`, {
+      params: {
+        lang: this.state.languageFilter,
+        rating: this.state.ratingFilter,
+        travel: this.state.travelFilter,
+        season: this.state.seasonFilter
+      }
+    })
       .then(({data}) => {
         this.setState({
           reviews: data
@@ -193,14 +195,10 @@ class App extends React.Component {
         return data;
       })
       .then((data) => {
-        var count = 0;
-        for (let i = 0; i < data.length; i++) {
-          count++
-        }
         this.setState ({
-          reviewCount: count
+          reviewCount: data.length
         })
-        return data
+        return data;
       })
       .then(() => {
         this.fetchInitialReviews()
@@ -217,7 +215,7 @@ class App extends React.Component {
       var ratings = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0};
       for (let i = 0; i < data.length; i++) {
         for (var key in ratings) {
-          if (data[i].rating === parseInt(key)) {
+          if (data[i].rating === key) {
             ratings[key]++;
           }
         }

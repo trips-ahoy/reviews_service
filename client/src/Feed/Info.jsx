@@ -1,22 +1,10 @@
 import React from 'react';
 
-class Info extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      info: this.props.info
-    }
-  }
-
-
-  render() {
-    return (
+const Info = ({review}) => (
       <div className='infoContainer' >
         <div className = "review-rating">
           {
-            (this.props.info.rating === 0) &&
+            (review.rating === '0') &&
             <div className = "circles">
             <i class="far fa-circle"></i>
             <i class="far fa-circle"></i>
@@ -27,7 +15,7 @@ class Info extends React.Component {
 
           }
           {
-            (this.props.info.rating === 1) &&
+            (review.rating === '1') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="far fa-circle"></i>
@@ -38,7 +26,7 @@ class Info extends React.Component {
 
           }
           {
-            (this.props.info.rating === 2) &&
+            (review.rating === '2') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -49,7 +37,7 @@ class Info extends React.Component {
 
           }
           {
-            (this.props.info.rating === 3) &&
+            (review.rating === '3') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -60,7 +48,7 @@ class Info extends React.Component {
 
           }
           {
-            (this.props.info.rating === 4) &&
+            (review.rating === '4') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -71,7 +59,7 @@ class Info extends React.Component {
 
           }
           {
-            (this.props.info.rating === 5) &&
+            (review.rating === '5') &&
             <div className = "circles">
             <i class="fas fa-circle"></i>
             <i class="fas fa-circle"></i>
@@ -84,16 +72,16 @@ class Info extends React.Component {
 
         </div>
 
-        <div className = "review-title">{this.state.info.title}</div>
-        <div className = "review-text">{this.state.info.full_text}</div>
+        <div className = "review-title">{review.title}</div>
+        <div className = "review-text">{review.full_text}</div>
         < br/>
 
         <div className = "date">
           <div className = "date-heading">Date of experience: </div>
-          <div className = "date-text"> {this.state.info.date}</div>
+          <div className = "date-text"> {review.date}</div>
         </div>
 
-        <div className = "helpfulVotes">{this.state.info.helpful.length} Helpful votes</div>
+        <div className = "helpfulVotes">{review.helpful_count} Helpful votes</div>
 
         <div className = "reviewFooter">
           <div className = 'likeContainer'>
@@ -107,8 +95,6 @@ class Info extends React.Component {
         </div>
 
       </div>
-    );
-  }
-}
+);
 
 export default Info;
