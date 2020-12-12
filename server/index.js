@@ -1,9 +1,10 @@
+require('newrelic');
+
 const express = require('express');
 const app = express();
 const port = 3003;
 const morgan = require('morgan');
 const pool = require('../database/index.js');
-const newRelic = require('newrelic');
 
 app.use(morgan('dev'));
 
