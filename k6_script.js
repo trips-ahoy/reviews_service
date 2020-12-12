@@ -1,22 +1,26 @@
 import http from 'k6/http';
-import { sleep } from 'k6';
-export default function () {
-  http.get('http://localhost:3003/api/listings/1/reviews');
-  sleep(1);
-}
+import { check } from 'k6';
 
 export let options = {
   stages: [
-    { duration: '1m', target: 100 },
-    { duration: '1m', target: 200 },
-    { duration: '1m', target: 300 }, 
-    { duration: '1m', target: 400 },
-    { duration: '1m', target: 500 }, 
-    { duration: '1m', target: 600 },
-    { duration: '1m', target: 700 },
-    { duration: '1m', target: 800 },
-    { duration: '1m', target: 900 },
-    { duration: '5m', target: 1000 },
-    { duration: '5m', target: 0 }
+    { duration: '30s', target: 10 },
+    { duration: '30s', target: 20 },
+    { duration: '30s', target: 40 },
+    { duration: '30s', target: 80 },
+    { duration: '30s', target: 160 },
+    { duration: '30s', target: 0 }
   ]
+};
+
+export default function () {
+  let id = Math.floor((Math.random() * 10000000) + 1);
+  let url = `http://localhost:3003/api/listings/${id}/reviews`;
+
+  let res = http.get(url);
+
+  check(res, {
+    'took less than 2s to complete': (r) => r.timings.duration < 2000,
+    'no errors': (r) => !r.error,
+    'is status 200': (r) => r.status === 200
+  });
 };

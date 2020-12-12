@@ -3,10 +3,10 @@ require('newrelic');
 const express = require('express');
 const app = express();
 const port = 3003;
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const pool = require('../database/index.js');
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.use('/:listing_id', express.static('public'));
 
