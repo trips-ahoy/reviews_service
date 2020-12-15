@@ -4,6 +4,10 @@ node_modules
 
 *.pem
 
+##AWSLogin
+
+*.sh
+
 ##databaseLoginInfo
 
 database/login.js

@@ -16,6 +16,13 @@ export default function () {
   let id = Math.floor((Math.random() * 10000000) + 1);
   let url = `http://localhost:3003/api/listings/${id}/reviews`;
 
+  // let params = {
+  //   lang: ['English', 'German', 'French', 'Spanish', 'Italian', 'Arabic', 'Japanese'],
+  //   rating: [1, 2, 3, 4, 5],
+  //   travel: ['families', 'couples', 'solo', 'business', 'friends'],
+  //   season: ['Mar-May', 'Jun-Aug', 'Sep-Nov', 'Dec-Feb']
+  // }
+
   let res = http.get(url);
 
   check(res, {

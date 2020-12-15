@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server",
     "build": "webpack -w",
+    "k6": "k6 run k6_script.js",
     "test": "jest --coverage --runInBand --detectOpenHandles",
     "pgGenerateListings": "node data_generation/pg/pgListingsGenerator.js",
     "pgGenerateReviews": "node data_generation/pg/pgReviewsGenerator.js",
