@@ -1,11 +1,19 @@
 const { Pool } = require('pg');
-const LOGIN = require('./login.js');
+// const LOGIN = require('./login.js');
+
+// const pool = new Pool({
+//   host: LOGIN.HOST,
+//   port: LOGIN.PORT,
+//   user: LOGIN.USER,
+//   password: LOGIN.PASSWORD,
+//   database: 'tripreviews'
+// });
 
 const pool = new Pool({
-  host: 'localhost',
-  post: 3003,
-  user: LOGIN.POSTGRES_USER,
-  password: LOGIN.POSTGRES_PASSWORD,
+  host: process.env.HOST,
+  port: process.env.PORT,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
   database: 'tripreviews'
 });
 

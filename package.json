@@ -4,8 +4,10 @@
   "description": "",
   "main": "/reviews_service/client/index.js",
   "scripts": {
-    "start": "nodemon server",
-    "build": "webpack -w",
+    "start": "node server",
+    "startDev": "nodemon server",
+    "build": "webpack",
+    "buildDev": "webpack -w",
     "k6": "k6 run k6_script.js",
     "test": "jest --coverage --runInBand --detectOpenHandles",
     "pgGenerateListings": "node data_generation/pg/pgListingsGenerator.js",

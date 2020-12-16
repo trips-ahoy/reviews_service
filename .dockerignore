@@ -26,12 +26,3 @@ data_generation/mongo/mongo_data
 ##bundle
 
 public/bundle.js
-
-##newRelic
-
-newrelic_agent.log
-newrelic.js
-
-##loaderio
-
-loaderio-ee5303b687dcc75211e6ab2029493fac.txt

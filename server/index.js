@@ -78,3 +78,7 @@ app.get('/api/listings/:listing_id/reviews/filtered', function (req, res) {
   });
 
 });
+
+app.get('/loaderio-ee5303b687dcc75211e6ab2029493fac/', (req, res) => {
+  res.sendFile('loaderio-ee5303b687dcc75211e6ab2029493fac.txt');
+});
