@@ -8,6 +8,12 @@ const pool = require('../database/index.js');
 
 // app.use(morgan('dev'));
 
+app.use('/', express.static('public'));
+
+app.get('/loaderio-f8304f3a9a0edb2c8cb8e5e18574124f/', (req, res) => {
+  res.send('loaderio-f8304f3a9a0edb2c8cb8e5e18574124f');
+});
+
 app.use('/:listing_id', express.static('public'));
 
 app.listen(port, () => console.log(`listening on port ${port}`));
@@ -77,8 +83,4 @@ app.get('/api/listings/:listing_id/reviews/filtered', function (req, res) {
     }
   });
 
-});
-
-app.get('/loaderio-ee5303b687dcc75211e6ab2029493fac/', (req, res) => {
-  res.sendFile('loaderio-ee5303b687dcc75211e6ab2029493fac.txt');
 });
