@@ -10,8 +10,8 @@ const pool = require('../database/index.js');
 
 app.use('/', express.static('public'));
 
-app.get('/loaderio-f8304f3a9a0edb2c8cb8e5e18574124f/', (req, res) => {
-  res.send('loaderio-f8304f3a9a0edb2c8cb8e5e18574124f');
+app.get('/loaderio-f8785e9f423230482d87d5ef2c07eaaf/', (req, res) => {
+  res.send('loaderio-f8785e9f423230482d87d5ef2c07eaaf');
 });
 
 app.use('/:listing_id', express.static('public'));
