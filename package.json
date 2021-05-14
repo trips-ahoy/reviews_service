@@ -36,6 +36,7 @@
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "jest-enzyme": "^7.1.2",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "newrelic": "^7.0.2",
     "nodemon": "^2.0.6",
